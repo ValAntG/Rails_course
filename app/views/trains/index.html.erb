@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Поезда</h1>
-
-<table>
+<%= render partial: "train", collection: @trains %>
+<!--table>
   <thead>
     <tr>
       <th>Имя</th>
@@ -12,15 +12,10 @@
 
   <tbody>
     <% @trains.each do |train| %>
-      <tr>
-        <td><%= train.name %></td>
-        <td><%= link_to 'Посмотреть', train %></td>
-        <td><%= link_to 'Редактировать', edit_train_path(train) %></td>
-        <td><%= link_to 'Удалить', train, method: :delete, data: { confirm: 'Вы действительно хотите удалить?' } %></td>
-      </tr>
+      <%= render train %>
     <% end %>
   </tbody>
-</table>
+</table-->
 
 <br>
 
