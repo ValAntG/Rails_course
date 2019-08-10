@@ -5,5 +5,11 @@
   <%= @route.name %>
 </p>
 
+<p>
+  <strong>Поезда на данном маршруте:</strong>
+  <%=@route.trains.map{|train| train.name} if @route.trains.any?%>
+  <%="поездов нет" if !@route.trains.any?%>
+</p>
+
 <%= link_to 'Редактировать', edit_route_path(@route) %> |
 <%= link_to 'Назад', routes_path %>

@@ -12,7 +12,7 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :name %>
+    <%= form.label :name, "Номер поезда" %>
     <%= form.number_field :name %>
   </div>
 
@@ -22,8 +22,8 @@
   </div>
 
     <div class="field">
-    <%= form.label :name, "номер поезда" %>
-    <%= form.collection_select :name, Train.all, :id, :name %>
+    <%= form.label :route, "Маршрут" %>
+    <%= form.collection_select :route, Route.all, :id, :name %>
   </div>
 
   <div class="actions">

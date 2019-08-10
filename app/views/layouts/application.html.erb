@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>RailsCourse</title>
+    <title>RailsCourseNIXSolutions</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <h1>Макет железной дороги</h1>
+    <%= link_to 'Список железнодорожных станций', railway_stations_path %>
+    <%= link_to 'Список поездов', trains_path %>
+    <%= link_to 'Список маршрутов', routes_path %>
+
   </head>
 
   <body>
     <%= yield %>
   </body>
   <footer>
-  (с) 2015 Иван Иванов (подставьте ваше имя). Учебный проект в онлайн-школе Thinknetica". Слова "онлайн-школе Thinknetica" нужно сделать ссылкой на
+  (с) 2019 ValAntG. Учебный проект в <%= link_to 'онлайн-школе NIXSolutions', 'http://study.ruby.nixdev.co'%>
   </footer>
 </html>

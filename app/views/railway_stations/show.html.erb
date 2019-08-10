@@ -5,5 +5,10 @@
   <%= @railway_station.title %>
 </p>
 
+<p>
+  <strong>Поезда на станции:</strong>
+  <%=@railway_station.trains.map{|train| train.name} if @railway_station.trains.any?%>
+</p>
+
 <%= link_to 'Редактировать', edit_railway_station_path(@railway_station) %> |
 <%= link_to 'Назад', railway_stations_path %>
