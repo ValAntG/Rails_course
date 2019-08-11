@@ -41,8 +41,6 @@ class TrainsController < ApplicationController
     end
   end
 
-  # DELETE /trains/1
-  # DELETE /trains/1.json
   def destroy
     @train.destroy
     respond_to do |format|
@@ -52,12 +50,10 @@ class TrainsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_train
       @train = Train.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def train_params
       params.require(:train).permit(:name)
     end

@@ -15,8 +15,6 @@ class RailwayStationsController < ApplicationController
   def edit
   end
 
-  # POST /railway_stations
-  # POST /railway_stations.json
   def create
     @railway_station = RailwayStation.new(railway_station_params)
 
@@ -31,8 +29,6 @@ class RailwayStationsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /railway_stations/1
-  # PATCH/PUT /railway_stations/1.json
   def update
     respond_to do |format|
       if @railway_station.update(railway_station_params)
@@ -45,8 +41,6 @@ class RailwayStationsController < ApplicationController
     end
   end
 
-  # DELETE /railway_stations/1
-  # DELETE /railway_stations/1.json
   def destroy
     @railway_station.destroy
     respond_to do |format|

@@ -21,7 +21,7 @@
     <%= form.collection_select :current_station_id, RailwayStation.all, :id, :title %>
   </div>
 
-    <div class="field">
+  <div class="field">
     <%= form.label :route, "Маршрут" %>
     <%= form.collection_select :route, Route.all, :id, :name %>
   </div>
