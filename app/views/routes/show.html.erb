@@ -11,5 +11,11 @@
   <%="поездов нет" if !@route.trains.any?%>
 </p>
 
+<p>
+  <strong>Станции которые входят в данный маршрут:</strong>
+  <%=@route.railway_stations.map{|station| station.title} if @route.railway_stations.any?%>
+  <%="станций нет" if !@route.railway_stations.any?%>
+</p>
+
 <%= link_to 'Редактировать', edit_route_path(@route) %> |
 <%= link_to 'Назад', routes_path %>
