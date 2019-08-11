@@ -7,14 +7,14 @@
 
 <p>
   <strong>Поезда на данном маршруте:</strong>
-  <%=@route.trains.map{|train| train.name} if @route.trains.any?%>
-  <%="поездов нет" if !@route.trains.any?%>
+  <%= @route.trains.map(&:name) if @route.trains.any? %>
+  <%= "поездов нет" if !@route.trains.any? %>
 </p>
 
 <p>
   <strong>Станции которые входят в данный маршрут:</strong>
-  <%=@route.railway_stations.map{|station| station.title} if @route.railway_stations.any?%>
-  <%="станций нет" if !@route.railway_stations.any?%>
+  <%= @route.railway_stations.map(&:title) if @route.railway_stations.any? %>
+  <%= "станций нет" if !@route.railway_stations.any? %>
 </p>
 
 <%= link_to 'Редактировать', edit_route_path(@route) %> |
