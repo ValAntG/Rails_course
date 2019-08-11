@@ -1,0 +1,5 @@
+<p>
+  <%= link_to route.name, route %> - 
+  <%= link_to 'Редактировать', edit_route_path(route) %> - 
+  <%= link_to 'Удалить', route, method: :delete, data: { confirm: 'Вы действительно хотите удалить?' } %>
+</p>

@@ -5,5 +5,17 @@
   <%= @railway_station.title %>
 </p>
 
+<p>
+  <strong>Поезда на станции:</strong>
+  <%= @railway_station.trains.map(&:name) if @railway_station.trains.any? %>
+  <%= "поездов нет" if !@railway_station.trains.any? %>
+</p>
+
+<p>
+  <strong>Станция входит в маршруты:</strong>
+  <%= @railway_station.routes.map(&:name) if @railway_station.routes.any? %>
+  <%= "маршрутов нет" if !@railway_station.routes.any? %>
+</p>
+
 <%= link_to 'Редактировать', edit_railway_station_path(@railway_station) %> |
 <%= link_to 'Назад', railway_stations_path %>

@@ -18,6 +18,11 @@
     <%= form.text_field :name %>
   </div>
 
+  <div class="field">
+    <%= form.label :railway_stations, "Добавить станцию" %>
+    <%= form.collection_select :railway_stations, RailwayStation.all, :id, :title %>
+  </div>
+
   <div class="actions">
     <%= form.submit 'Изменить' %>
   </div>

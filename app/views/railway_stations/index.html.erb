@@ -2,25 +2,7 @@
 
 <h1>Железнодорожные станции</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Название станции</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @railway_stations.each do |railway_station| %>
-      <tr>
-        <td><%= railway_station.title %></td>
-        <td><%= link_to 'Посмотреть', railway_station %></td>
-        <td><%= link_to 'Редактировать', edit_railway_station_path(railway_station) %></td>
-        <td><%= link_to 'Удалить', railway_station, method: :delete, data: { confirm: 'Вы действительно хотите удалить?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= render partial: "railway_station", collection: @railway_stations %>
 
 <br>
 

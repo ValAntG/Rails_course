@@ -26,6 +26,7 @@ class RoutesController < ApplicationController
 
   def update
     if @route.update(route_params)
+      @route.railway_stations << RailwayStation.find(params[:route][:railway_stations])
       redirect_to @route
     else
       render :edit
