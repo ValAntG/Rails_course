@@ -1,0 +1,39 @@
+<%= form_with(model: carriage, local: true) do |form| %>
+  <% if carriage.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(carriage.errors.count, "error") %> prohibited this carriage from being saved:</h2>
+
+      <ul>
+      <% carriage.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :train, "Номер поезда" %>
+    <%= form.collection_select :train_id, Train.all, :id, :name %>
+  </div>
+
+  
+  <div class="field">
+    <%= form.label :type_car, "Тип вагона" %>
+    <% select_list = { 'плацкартный вагон': 'econom', 'купейный вагон': 'coupe' } %>
+    <%= form.select :type_car, select_list %>
+  </div>
+
+  <div class="field">
+    <%= form.label :place_botton, "Количество нижних мест" %>
+    <%= form.text_field :place_botton %>
+  </div>
+
+  <div class="field">
+  <%= form.label :place_top, "Количество верхних мест" %>
+  <%= form.text_field :place_top %>
+</div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

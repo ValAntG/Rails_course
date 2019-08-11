@@ -1,0 +1,5 @@
+<p>
+  Поезд № <%= link_to carriage.train.name, carriage %> - 
+  <%= link_to 'Редактировать', edit_carriage_path(carriage) %> - 
+  <%= link_to 'Удалить', carriage, method: :delete, data: { confirm: 'Вы действительно хотите удалить?' } %>
+</p>

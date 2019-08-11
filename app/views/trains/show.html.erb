@@ -15,5 +15,35 @@
   <%= @train.current_station.title %>
 </p>
 
+<p>
+  <strong>Количество плацкартных вагонов:</strong>
+  <%= @train.carriages.group(:type_car).count['coupe'] %>
+</p>
+
+<p>
+  <strong>Количество купейных вагонов:</strong>
+  <%= @train.carriages.group(:type_car).count['econom'] %>
+</p>
+
+<p>
+  <strong>Количество нижних мест в плацкартных вагонах:</strong>
+  <%= @train.carriages.map {|car| car.place_botton if car.type_car == 'econom'}.compact!.sum %>
+</p>
+
+<p>
+  <strong>Количество верхних мест в плацкартных вагонах:</strong>
+  <%= @train.carriages.map {|car| car.place_top if car.type_car == 'econom'}.compact!.sum %>
+</p>
+
+<p>
+  <strong>Количество нижних мест в купейных вагонах:</strong>
+  <%= @train.carriages.map {|car| car.place_botton if car.type_car == 'coupe'}.compact!.sum %>
+</p>
+
+<p>
+  <strong>Количество верхних мест в купейных вагонах:</strong>
+  <%= @train.carriages.map {|car| car.place_top if car.type_car == 'coupe'}.compact!.sum %>
+</p>
+
 <%= link_to 'Редактировать', edit_train_path(@train) %> |
 <%= link_to 'Назад', trains_path %>

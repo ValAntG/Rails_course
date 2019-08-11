@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Вагоны</h1>
+
+<%= render partial: "carriage", collection: @carriages %>
+
+<br>
+
+<%= link_to 'Новый вагон', new_carriage_path %>
