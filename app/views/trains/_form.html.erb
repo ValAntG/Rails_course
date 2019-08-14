@@ -23,7 +23,7 @@
 
   <div class="field">
     <%= form.label :route, "Маршрут" %>
-    <%= form.collection_select :route, Route.all, :id, :name %>
+    <%= form.collection_select :route_id, Route.all, :id, :name %>
   </div>
 
   <div class="actions">

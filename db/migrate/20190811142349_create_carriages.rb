@@ -5,6 +5,8 @@ class CreateCarriages < ActiveRecord::Migration[5.2]
       t.integer :place_top
       t.integer :place_botton
       t.integer :train_id
+
+      t.timestamps
     end
   end
 end
