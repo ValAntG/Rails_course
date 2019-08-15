@@ -1,5 +1,5 @@
 class RailwayStation < ApplicationRecord
-  validates :title, presence: true
+  validates :title, uniqueness: true
 
   has_many :trains
   has_many :railway_stations_routes
