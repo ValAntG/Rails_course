@@ -5,4 +5,8 @@ class Train < ApplicationRecord
   belongs_to :route, class_name: 'Route', foreign_key: :route_id
   has_many :tickets
   has_many :carriages
+
+  def place(type, place)
+    self.carriages.where(type: type).sum(place.to_sym)
+  end
 end
