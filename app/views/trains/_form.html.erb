@@ -26,6 +26,13 @@
     <%= form.collection_select :route_id, Route.all, :id, :name %>
   </div>
 
+  <div class="field">
+    <p>
+      "Сортировка вагонов с головы поезда"
+      <%= form.check_box :sortcar %>
+    </p>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>
