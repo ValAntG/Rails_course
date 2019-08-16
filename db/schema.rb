@@ -35,6 +35,8 @@ ActiveRecord::Schema.define(version: 2019_08_15_145314) do
     t.integer "railway_station_id"
     t.integer "route_id"
     t.integer "position", null: false
+    t.time "arrival"
+    t.time "departure"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

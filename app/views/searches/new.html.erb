@@ -1,0 +1,26 @@
+<h1>Новый поиск</h1>
+<%= form_with(model: @search, local: true) do |form| %>
+  <% if @search.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@search.errors.count, "error") %> prohibited this route from being saved:</h2>
+
+      <ul>
+      <% @search.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :station_first, "Станция отправления" %>
+    <%= form.select(:station_first_id, RailwayStation.all.collect {|s| [ s.title, s.id ] },
+                                                                        { :prompt => "Выберите станции"},
+                                                                        { :multiple => true, :size => 5}) %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+

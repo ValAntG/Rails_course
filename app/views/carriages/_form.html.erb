@@ -1,4 +1,4 @@
-<%= form_with(model: carriage.becomes(Carriage), local: true) do |form| %>
+<%= form_for [ @train, @carriage.becomes(Carriage) ] do |form| %>
   <% if carriage.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(carriage.errors.count, "error") %> prohibited this carriage from being saved:</h2>
