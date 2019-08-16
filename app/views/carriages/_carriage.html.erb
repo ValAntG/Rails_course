@@ -1,5 +1,7 @@
 <p>
-  Поезд № <%= link_to carriage.train.name, carriage %> - 
-  <%= link_to 'Редактировать', edit_carriage_path(carriage) %> - 
-  <%= link_to 'Удалить', carriage, method: :delete, data: { confirm: 'Вы действительно хотите удалить?' } %>
+  <%= link_to "Поезд № #{carriage.train.name}, вагон №#{carriage.number}", controller: "carriages", action: "show", id: carriage%> -
+  <%= link_to 'Редактировать', edit_carriage_path(carriage) %> -
+  <%= link_to 'Удалить',
+                        { :controller => 'carriages', :action => 'destroy', :id => carriage },
+                        { :confirm => 'Are you sure?', :method => :delete, :remote => true}%>
 </p>

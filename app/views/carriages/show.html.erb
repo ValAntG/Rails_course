@@ -5,6 +5,40 @@
   <%= @carriage.train.name %>
 </p>
 
+<p>
+  <strong>Тип вагона:</strong>
+  <%= {
+    'сидячий': 'ExpressCarriage',
+    'плацкартный': 'EconomCarriage',
+    'купейный': 'CoupeCarriage',
+    'люкс': 'VipCarriage'
+  }.key(@carriage.type) %>
+</p>
+
+<p>
+  <em>Количество нижних мест:</em>
+  <%= @carriage.place_botton ||= 0 %>
+</p>
+
+<p>
+  <em>Количество верхних мест:</em>
+  <%= @carriage.place_top ||= 0 %>
+</p>
+
+<p>
+  <em>Количество нижних боковых мест:</em>
+  <%= @carriage.place_botton_side ||= 0 %>
+</p>
+
+<p>
+  <em>Количество верхних боковых мест:</em>
+  <%= @carriage.place_top_side  ||= 0 %>
+</p>
+
+<p>
+  <em>Количество сидячих мест:</em>
+  <%= @carriage.seat  ||= 0 %>
+</p>
 
 <%= link_to 'Редактировать', edit_carriage_path(@carriage) %> |
 <%= link_to 'Назад', carriages_path %>

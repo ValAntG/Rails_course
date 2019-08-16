@@ -16,34 +16,31 @@
 </p>
 
 <p>
-  <strong>Количество плацкартных вагонов:</strong>
-  <%= @train.carriages.group(:type_car).count['coupe'] %>
+  <em>Количество сидячих вагонов:</em>
+  <%= @train.carriages.group(:type).count['ExpressCarriage'] ||= 0 %>
 </p>
 
 <p>
-  <strong>Количество купейных вагонов:</strong>
-  <%= @train.carriages.group(:type_car).count['econom'] %>
+  <em>Количество плацкартных вагонов:</em>
+  <%= @train.carriages.group(:type).count['EconomCarriage'] ||= 0 %>
 </p>
 
 <p>
-  <strong>Количество нижних мест в плацкартных вагонах:</strong>
-  <%= @train.carriages.map {|car| car.place_botton if car.type_car == 'econom'}.compact!.sum %>
+  <em>Количество купейных вагонов:</em>
+  <%= @train.carriages.group(:type).count['CoupeCarriage'] ||= 0 %>
 </p>
 
 <p>
-  <strong>Количество верхних мест в плацкартных вагонах:</strong>
-  <%= @train.carriages.map {|car| car.place_top if car.type_car == 'econom'}.compact!.sum %>
+  <em>Количество люкс вагонов:</em>
+  <%= @train.carriages.group(:type).count['VipCarriage'] ||= 0 %>
 </p>
 
-<p>
-  <strong>Количество нижних мест в купейных вагонах:</strong>
-  <%= @train.carriages.map {|car| car.place_botton if car.type_car == 'coupe'}.compact!.sum %>
-</p>
-
-<p>
-  <strong>Количество верхних мест в купейных вагонах:</strong>
-  <%= @train.carriages.map {|car| car.place_top if car.type_car == 'coupe'}.compact!.sum %>
-</p>
+<strong>Вагоны в составе поезда:</strong>
+<% car = @train.carriages.reverse %>
+<% car = @train.carriages if @train.sortcar %>
+<% car.each do |carriage| %>
+  <%= render :partial => 'carriages/carriage', :locals => {:carriage => carriage} %>
+<% end %>
 
 <%= link_to 'Редактировать', edit_train_path(@train) %> |
 <%= link_to 'Назад', trains_path %>
