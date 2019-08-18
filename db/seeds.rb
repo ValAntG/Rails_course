@@ -5,9 +5,9 @@ station3 = RailwayStation.create({ title: 'Poltava' })
 route1 = Route.create({ name: 'Kiev-Kharkov' })
 route2 = Route.create({ name: 'Kharkov-Kiev' })
 
-station1.railway_stations_routes.create!(railway_station_id: 1, route_id: 1, position: 1)
-station2.railway_stations_routes.create!(railway_station_id: 2, route_id: 1, position: 2)
-station3.railway_stations_routes.create!(railway_station_id: 3, route_id: 1, position: 3)
+station1.railway_stations_routes.create!(railway_station_id: 1, route_id: 1, position: 1, arrival: '9:30', departure: '9:40')
+station2.railway_stations_routes.create!(railway_station_id: 2, route_id: 1, position: 2, arrival: '10:30', departure: '10:40')
+station3.railway_stations_routes.create!(railway_station_id: 3, route_id: 1, position: 3, arrival: '11:30', departure: '11:40')
 
 train1 = Train.create({ name: '63', current_station: station1, route: route1, sortcar: true })
 train2 = Train.create({ name: '64', current_station: station2, route: route2, sortcar: true })

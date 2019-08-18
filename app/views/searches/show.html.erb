@@ -2,3 +2,27 @@
 
 Поиск
 <%= link_to 'Новый поиск', new_search_path(@search) %> |
+
+<% if @search_stations.empty? %>
+Поездов не найдено
+<% else %>
+<table>
+  <thead>
+  <tr>
+    <td width="100px">Маршрут</td>
+    <td>Станция отправления</td>
+  </tr>
+  </thead>
+  <tbody>
+  <% @search_stations.each do |search_stations| %>
+    <tr>
+      <td><%= search_stations[:route_id] %></td>
+      <td>
+
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<% end %>
+
