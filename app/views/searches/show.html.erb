@@ -3,7 +3,7 @@
 Поиск
 <%= link_to 'Новый поиск', new_search_path(@search) %> |
 
-<% if @search.empty? %>
+<% if @search_rsr.empty? %>
 Поездов не найдено
 <% else %>
 <table>
@@ -11,15 +11,28 @@
   <tr>
     <td width="100px">Маршрут</td>
     <td>Станция отправления</td>
+    <td>Время отправления</td>
+    <td>Станция прибытия</td>
+    <td>Время прибытия</td>
+    <td>Купить билет</td>
   </tr>
   </thead>
   <tbody>
-  <% @search[:search_stations].each do |search_stations| %>
+  <% @search_rsr.each do |search_rsr| %>
+    <% first = RailwayStationsRoute.find(search_rsr[:first_id])%>
+    <% last = RailwayStationsRoute.find(search_rsr[:last_id])%>
     <tr>
-      <td><%= search_stations[:route] %></td>
+      <td><%= Route.find(first.route_id).name %></td>
+      <td><%= @search[:station_first] %></td>
+      <td><%= first.departure %></td>
+      <td><%= @search[:station_last] %></td>
+      <td><%= last.arrival %></td>
       <td>
-
-      </td>
+      <%= form_tag new_ticket(@search), method: :patch do %>
+        <%= hidden_field_tag :last, @search_rsr %>
+        <%= submit_tag "Купить билет" %>
+      <% end %>
+    </td>
     </tr>
   <% end %>
   </tbody>

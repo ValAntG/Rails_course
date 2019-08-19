@@ -1,0 +1,30 @@
+
+[1mFrom:[0m /home/vag/NIX/Rails_course/app/controllers/searches_controller.rb @ line 26 SearchesController#search_route:
+
+    [1;34m12[0m: [32mdef[0m [1;34msearch_route[0m
+    [1;34m13[0m:   @search = {[35mstation_first[0m: params[[33m:station_first[0m], [35mstation_last[0m: params[[33m:station_last[0m]}
+    [1;34m14[0m:   @search_route = []
+    [1;34m15[0m:   station_first = [1;34;4mRailwayStation[0m.find_by([35mtitle[0m: params[[33m:station_first[0m])
+    [1;34m16[0m:   station_last = [1;34;4mRailwayStation[0m.find_by([35mtitle[0m: params[[33m:station_last[0m])
+    [1;34m17[0m:   routes = station_first.routes&station_last.routes
+    [1;34m18[0m:   routes.map [32mdo[0m |route|
+    [1;34m19[0m:     station_position = [1;36mnil[0m
+    [1;34m20[0m:     route.railway_stations_routes.map [32mdo[0m |rsr|
+    [1;34m21[0m:       search_first_id = [1;36mnil[0m
+    [1;34m22[0m:       [32mif[0m rsr.railway_station_id == station_first.id
+    [1;34m23[0m:         station_position = rsr.position
+    [1;34m24[0m:         search_first_id = rsr.id
+    [1;34m25[0m:       [32mend[0m
+ => [1;34m26[0m:       binding.pry  
+    [1;34m27[0m:       [32munless[0m station_position.nil? 
+    [1;34m28[0m:         [32mif[0m rsr.railway_station_id == station_last.id && station_position < rsr.position
+    [1;34m29[0m:         search_last_id = rsr.id
+    [1;34m30[0m:         @search_route.push({[35mfirst_id[0m: search_first_id, [35mlast_id[0m: search_last_id})
+    [1;34m31[0m:         [32mend[0m
+    [1;34m32[0m:       [32mend[0m
+    [1;34m33[0m: 
+    [1;34m34[0m:     [32mend[0m 
+    [1;34m35[0m:     binding.pry   
+    [1;34m36[0m:   [32mend[0m
+    [1;34m37[0m: [32mend[0m
+

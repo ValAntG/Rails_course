@@ -9,6 +9,7 @@ class TicketsController < ApplicationController
   end
 
   def new
+    binding.pry
     @ticket = Ticket.new
   end
 
