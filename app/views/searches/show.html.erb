@@ -3,7 +3,7 @@
 Поиск
 <%= link_to 'Новый поиск', new_search_path(@search) %> |
 
-<% if @search_stations.empty? %>
+<% if @search.empty? %>
 Поездов не найдено
 <% else %>
 <table>
@@ -14,9 +14,9 @@
   </tr>
   </thead>
   <tbody>
-  <% @search_stations.each do |search_stations| %>
+  <% @search[:search_stations].each do |search_stations| %>
     <tr>
-      <td><%= search_stations[:route_id] %></td>
+      <td><%= search_stations[:route] %></td>
       <td>
 
       </td>
@@ -25,4 +25,3 @@
   </tbody>
 </table>
 <% end %>
-
