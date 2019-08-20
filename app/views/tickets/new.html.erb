@@ -1,0 +1,15 @@
+<h1>Покупка билета</h1>
+
+<%= form_tag(tickets_path, method: :get) do %>
+  <%= label_tag(:last_name, "Фамилия") %>
+  <%= text_field_tag :last_name %>
+  <%= label_tag(:first_name, "Имя") %>
+  <%= text_field_tag :first_name %>
+  <%= label_tag(:father_name, "Отчество") %>
+  <%= text_field_tag :father_name %>
+  <%= label_tag(:passport_series, "Серия паспорта") %>
+  <%= text_field_tag :passport_series %>
+  <%= label_tag(:passport_numbers, "Номер паспорта") %>
+  <%= text_field_tag :passport_numbers %>
+  <%= submit_tag 'Купить' %>
+<% end %>

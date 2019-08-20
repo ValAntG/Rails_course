@@ -1,6 +1,7 @@
 class SearchesController < ApplicationController
   def show
     search_route
+    binding.pry
   end
 
   def new
@@ -26,7 +27,7 @@ class SearchesController < ApplicationController
           search_last_id = rsr.id
           @search_rsr.push({first_id: search_first_id, last_id: search_last_id})
         end
-      end 
+      end
     end
   end
 end

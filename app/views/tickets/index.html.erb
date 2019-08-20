@@ -1,0 +1,8 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Поезда</h1>
+<%= render partial: "train", collection: @trains %>
+
+<br>
+
+<%= link_to 'Новый поезд', new_train_path %>

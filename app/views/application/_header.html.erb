@@ -1,8 +1,16 @@
 <header>
   <h1>Макет железной дороги</h1>
+  <p><strong>Списки</strong></p>
   <p>
     <%= link_to 'Список маршрутов', routes_path %>
     <%= link_to 'Список железнодорожных станций', railway_stations_path %>
     <%= link_to 'Список поездов', trains_path %>
   </p>
+  <p><strong>Операции с билетами</strong></p>
+  <p>
+    <%= link_to 'Поиск билетов', new_search_path %>
+    <%= link_to 'Купить билет', new_ticket_path %>
+  </p>
+  </br>
+
 </header>

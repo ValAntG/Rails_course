@@ -25,6 +25,9 @@ carriage5 = Carriage.create({ type: "VipCarriage", number: 5, place_botton: 18, 
 user1 = User.create({ name: 'Valentyn' })
 user2 = User.create({ name: 'Dmitriy' })
 
-ticket1 = Ticket.create({ train: train1, railway_station_first: station2, railway_station_last: station1, user: user1 })
-ticket2 = Ticket.create({ train: train1, railway_station_first: station2, railway_station_last: station1, user: user2 })
-ticket3 = Ticket.create({ train: train2, railway_station_first: station1, railway_station_last: station2, user: user1 })
+ticket1 = Ticket.create({ last_name: 'Гринь', first_name: 'Дмитрий', passport_series: 'МК', passport_numbers: 325368,
+                          train: train1, railway_station_first: station2, railway_station_last: station1, user: user1 })
+ticket2 = Ticket.create({ last_name: 'Геврасёв', first_name: 'Валентин', passport_series: 'МН', passport_numbers: 723368,
+                          train: train1, railway_station_first: station2, railway_station_last: station1, user: user2 })
+ticket3 = Ticket.create({ last_name: 'Гринь', first_name: 'Дмитрий', passport_series: 'МК', passport_numbers: 325368,
+                          train: train2, railway_station_first: station1, railway_station_last: station2, user: user1 })
