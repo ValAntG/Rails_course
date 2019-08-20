@@ -28,10 +28,10 @@
       <td><%= @search[:station_last] %></td>
       <td><%= last.arrival %></td>
       <td>
-      <--%= form_tag new_ticket(@search), method: :patch do %-->
-        <--%= hidden_field_tag :last, @search_rsr %-->
-        <--%= submit_tag "Купить билет" %-->
-      <--% end %-->
+      <%= form_tag new_ticket_path(@search), method: :get do %>
+        <%= hidden_field_tag :search, search_rsr %>
+        <%= submit_tag "Купить билет" %>
+      <% end %>
     </td>
     </tr>
   <% end %>

@@ -1,20 +1,19 @@
 class CarriagesController < ApplicationController
-  before_action :set_carriage, only: [:show, :edit, :update, :destroy]
-  before_action :set_train, unless: [:new]
+  before_action :load_carriage, only: [:show, :edit, :update, :destroy]
+  before_action :load_train, only: [:index, :create, :new]
 
   def index
-    @carriages = Carriage.all
+    @carriages = @train.carriages.all
   end
 
-  def show
-  end
+  def show; end
 
   def new
-    set_train_new
-    @carriage = Carriage.new
+    @carriage = @train.carriages.new
   end
 
   def edit
+    @carriage = Carriage.find(params[:id])
   end
 
   def create
@@ -41,15 +40,11 @@ class CarriagesController < ApplicationController
 
   private
 
-  def set_train_new
+  def load_train
     @train = Train.find(params[:train_id])
   end
 
-  def set_train
-    @train = Carriage.find(params[:id]).train
-  end
-
-  def set_carriage
+  def load_carriage
     @carriage = Carriage.find(params[:id])
   end
 

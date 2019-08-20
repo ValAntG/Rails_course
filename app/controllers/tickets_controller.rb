@@ -17,6 +17,7 @@ class TicketsController < ApplicationController
   end
 
   def create
+    binding.pry
     @ticket = Ticket.new(ticket_params)
     respond_to do |format|
       if @ticket.save
@@ -50,6 +51,6 @@ class TicketsController < ApplicationController
     end
 
     def ticket_params
-      params.require(:ticket).permit(:name)
+      params.require(:ticket).permit(:last_name, :first_name, :father_name, :passport_series, :passport_numbers)
     end
 end

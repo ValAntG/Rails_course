@@ -1,20 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Номер поезда:</strong>
-  <%= @train.name %>
+  <strong>Шоу билета:</strong>
 </p>
 
 
-<strong>Вагоны в составе поезда:</strong>
-<% car = @train.carriages.reverse %>
-<% car = @train.carriages if @train.sortcar %>
-<% car.each do |carriage| %>
-  <%= render :partial => 'carriages/carriage', :locals => {:carriage => carriage} %>
-<% end %>
-
-<p>
-<%= link_to 'Добавить вагон', new_train_carriage_path(@train) %>
-</p>
-<%= link_to 'Редактировать поезд', edit_train_path(@train) %> |
-<%= link_to 'Назад к списку поездов', trains_path %>
