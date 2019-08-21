@@ -16,6 +16,7 @@ class SearchesController < ApplicationController
   end
 
   def search_route
+    binding.pry
     @search_rsr = []
     routes = Route.includes(:railway_stations_routes)
                   .where(id: RailwayStationsRoute.where(railway_station_id: params[:station_first_id]).select(:route_id))
@@ -26,5 +27,6 @@ class SearchesController < ApplicationController
       lastrsr = rsrs.detect { |rsr| rsr.railway_station_id == params[:station_last_id].to_i && rsr.position > firstrsr.position }
       @search_rsr.push({firstrsr: firstrsr, lastrsr: lastrsr, route: route}) if lastrsr
     end
+
   end
 end

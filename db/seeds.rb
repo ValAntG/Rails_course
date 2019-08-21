@@ -5,12 +5,12 @@ station3 = RailwayStation.create({ title: 'Kharkov' })
 route1 = Route.create({ name: 'Kiev-Kharkov' })
 route2 = Route.create({ name: 'Kharkov-Kiev' })
 
-station1.railway_stations_routes.create!(railway_station_id: 1, route_id: 1, position: 1, arrival: '9:30', departure: '9:40')
-station2.railway_stations_routes.create!(railway_station_id: 2, route_id: 1, position: 2, arrival: '10:30', departure: '10:40')
-station3.railway_stations_routes.create!(railway_station_id: 3, route_id: 1, position: 3, arrival: '11:30', departure: '11:40')
-station1.railway_stations_routes.create!(railway_station_id: 1, route_id: 2, position: 3, arrival: '19:30', departure: '19:40')
-station2.railway_stations_routes.create!(railway_station_id: 2, route_id: 2, position: 2, arrival: '20:30', departure: '20:40')
-station3.railway_stations_routes.create!(railway_station_id: 3, route_id: 2, position: 1, arrival: '21:30', departure: '21:40')
+# station1.railway_stations_routes.create!(railway_station_id: 1, route_id: 1, position: 1)
+# station2.railway_stations_routes.create!(railway_station_id: 2, route_id: 1, position: 2)
+# station3.railway_stations_routes.create!(railway_station_id: 3, route_id: 1, position: 3)
+# station1.railway_stations_routes.create!(railway_station_id: 1, route_id: 2, position: 3)
+# station2.railway_stations_routes.create!(railway_station_id: 2, route_id: 2, position: 2)
+# station3.railway_stations_routes.create!(railway_station_id: 3, route_id: 2, position: 1)
 
 train1 = Train.create({ name: '63', current_station: station1, route: route1, sortcar: true })
 train2 = Train.create({ name: '64', current_station: station2, route: route2, sortcar: true })
@@ -31,3 +31,7 @@ ticket2 = Ticket.create({ last_name: 'Геврасёв', first_name: 'Вален
                           train: train1, railway_station_first: station2, railway_station_last: station1, user: user2 })
 ticket3 = Ticket.create({ last_name: 'Гринь', first_name: 'Дмитрий', passport_series: 'МК', passport_numbers: 325368,
                           train: train2, railway_station_first: station1, railway_station_last: station2, user: user1 })
+
+# train1.railway_stations_trains.create!(railway_station_id: 1, route_id: 1, arrival: '9:30', departure: '9:40')
+# train1.railway_stations_trains.create!(railway_station_id: 2, route_id: 1, arrival: '9:30', departure: '9:40')
+# train1.railway_stations_trains.create!(railway_station_id: 3, route_id: 1, arrival: '9:30', departure: '9:40')

@@ -9,7 +9,6 @@ class TicketsController < ApplicationController
   end
 
   def new
-    binding.pry
     @ticket = Ticket.new
   end
 
@@ -17,7 +16,6 @@ class TicketsController < ApplicationController
   end
 
   def create
-    binding.pry
     @ticket = Ticket.new(ticket_params)
     respond_to do |format|
       if @ticket.save
