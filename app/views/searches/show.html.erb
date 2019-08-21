@@ -19,20 +19,18 @@
   </thead>
   <tbody>
   <% @search_rsr.each do |search_rsr| %>
-    <% first = RailwayStationsRoute.find(search_rsr[:first_id])%>
-    <% last = RailwayStationsRoute.find(search_rsr[:last_id])%>
     <tr>
-      <td><%= Route.find(first.route_id).name %></td>
-      <td><%= @search[:station_first] %></td>
-      <td><%= first.departure %></td>
-      <td><%= @search[:station_last] %></td>
-      <td><%= last.arrival %></td>
+      <td><%= search_rsr[:route].name %></td>
+      <td><%= @station_first.title %></td>
+      <td><%= search_rsr[:firstrsr].departure %></td>
+      <td><%= @station_last.title %></td>
+      <td><%= search_rsr[:lastrsr].arrival %></td>
       <td>
       <%= form_tag new_ticket_path(@search), method: :get do %>
         <%= hidden_field_tag :search, search_rsr %>
         <%= submit_tag "Купить билет" %>
       <% end %>
-    </td>
+      </td>
     </tr>
   <% end %>
   </tbody>
