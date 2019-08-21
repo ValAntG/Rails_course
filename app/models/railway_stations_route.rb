@@ -3,6 +3,7 @@ class RailwayStationsRoute < ApplicationRecord
 
   belongs_to :railway_station
   belongs_to :route
+  belongs_to :train
   after_create :set_name
 
   private

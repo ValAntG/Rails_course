@@ -22,9 +22,9 @@
     <tr>
       <td><%= search_rsr[:route].name %></td>
       <td><%= @station_first.title %></td>
-
+      <td><%= search_rsr[:firstrsr].departure %></td>
       <td><%= @station_last.title %></td>
-
+      <td><%= search_rsr[:lastrsr].arrival %></td>
       <td>
       <%= form_tag new_ticket_path(@search), method: :get do %>
         <%= hidden_field_tag :search, search_rsr %>

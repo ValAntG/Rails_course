@@ -16,7 +16,6 @@ class SearchesController < ApplicationController
   end
 
   def search_route
-    binding.pry
     @search_rsr = []
     routes = Route.includes(:railway_stations_routes)
                   .where(id: RailwayStationsRoute.where(railway_station_id: params[:station_first_id]).select(:route_id))
