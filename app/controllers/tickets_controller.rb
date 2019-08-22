@@ -6,6 +6,15 @@ class TicketsController < ApplicationController
   end
 
   def show
+    @ticket
+    ticket = Ticket.find(params[:id])
+    train = Train.find(RailwayStationsRoute.find(ticket.rsr_first_id).train_id)
+    station_first = RailwayStation.find(RailwayStationsRoute.find(ticket.rsr_first_id).railway_station_id)
+    station_last = RailwayStation.find(RailwayStationsRoute.find(ticket.rsr_last_id).railway_station_id)
+    time_first = RailwayStationsRoute.find(ticket.rsr_first_id).departure
+    time_last = RailwayStationsRoute.find(ticket.rsr_last_id).arrival
+    @ticket_info = {train: train.name, station_first: station_first.title, station_last: station_last.title,
+                    time_first: time_first, time_last: time_last}
   end
 
   def new
@@ -35,20 +44,17 @@ class TicketsController < ApplicationController
   end
 
   private
-    def set_ticket
-      @ticket = Ticket.find(params[:id])
-    end
+  def set_ticket
+    @ticket = Ticket.find(params[:id])
+  end
 
-    def ticket_params
-      params.require(:ticket).permit(:last_name, :first_name, :father_name, :passport_series, :passport_numbers)
-    end
+  def ticket_params
+    params.require(:ticket).permit(:last_name, :first_name, :father_name, :passport_series, :passport_numbers)
+  end
 
-    def train_params
-      station_first_id = params[:ticket_rsr_first].to_i
-      station_last_id = params[:ticket_rsr_last].to_i
-      train_id = Train.find(RailwayStationsRoute.find(station_first_id).train_id).id
-      # station_first = RailwayStation.find(RailwayStationsRoute.find(rsr_first).railway_station_id).title
-      # station_last = RailwayStation.find(RailwayStationsRoute.find(rsr_last).railway_station_id).title
-      @train_ticket = { train_id: train_id, railway_station_first_id: station_first_id, railway_station_last_id: station_last_id}
-    end
+  def train_params
+    first_station = RailwayStationsRoute.find(params[:ticket_rsr_first])
+    last_station = RailwayStationsRoute.find(params[:ticket_rsr_first])
+    train_ticket = { rsr_first_id: first_station.id, rsr_last_id: last_station.id}
+  end
 end
