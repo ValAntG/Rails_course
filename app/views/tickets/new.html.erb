@@ -1,7 +1,6 @@
 <h1>Покупка билета</h1>
 
 <%= form_with(url: tickets_path(@ticket), model: @ticket, method: :post, local: true) do |form| %>
-<%= binding.pry %>
   <%= form.label(:last_name, "Фамилия") %>
   <%= form.text_field :last_name %>
   <%= form.label(:first_name, "Имя") %>
@@ -12,5 +11,7 @@
   <%= form.text_field :passport_series %>
   <%= form.label(:passport_numbers, "Номер паспорта") %>
   <%= form.text_field :passport_numbers %>
+  <%= hidden_field_tag :ticket_rsr_first, params[:ticket_rsr_first] %>
+  <%= hidden_field_tag :ticket_rsr_last, params[:ticket_rsr_last] %>
   <%= form.submit 'Купить' %>
 <% end %>

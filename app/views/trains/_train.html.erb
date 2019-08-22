@@ -1,5 +1,5 @@
 <p>
-  Поезд №<%= link_to train.name, train %> - 
+  <%= link_to "Поезд № #{train.name}", train %> - 
   <%= link_to 'Редактировать', edit_train_path(train) %> - 
   <%= link_to 'Удалить', train, method: :delete, data: { confirm: 'Вы действительно хотите удалить?' } %>
 </p>

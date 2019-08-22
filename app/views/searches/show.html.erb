@@ -27,7 +27,10 @@
       <td><%= search_rsr[:lastrsr].arrival %></td>
       <td>
       <%= form_tag new_ticket_path(@search), method: :get do %>
-        <%= hidden_field_tag :search, search_rsr %>
+        <% rsr_first = search_rsr[:firstrsr].id %>
+        <% rsr_last = search_rsr[:lastrsr].id %>
+        <%= hidden_field_tag :ticket_rsr_first, rsr_first %>
+        <%= hidden_field_tag :ticket_rsr_last, rsr_last %>
         <%= submit_tag "Купить билет" %>
       <% end %>
       </td>
