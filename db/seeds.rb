@@ -28,12 +28,12 @@ carriage3 = Carriage.create(type: "ExpressCarriage", number: 3, seat: 60, train:
 carriage4 = Carriage.create(type: "ExpressCarriage", number: 4, seat: 60, train: train1)
 carriage5 = Carriage.create(type: "VipCarriage", number: 5, place_botton: 18, train: train1)
 
-user1 = User.create(name: 'Valentyn')
-user2 = User.create(name: 'Dmitriy')
+# user1 = User.create(name: 'Valentyn')
+# user2 = User.create(name: 'Dmitriy')
 
 ticket1 = Ticket.create(last_name: 'Гринь', first_name: 'Дмитрий', passport_series: 'МК', passport_numbers: 325_368,
-                          rsr_first: rsr1, rsr_last: rsr3, user: user1)
+                          rsr_first: rsr1, rsr_last: rsr3)
 ticket2 = Ticket.create(last_name: 'Геврасёв', first_name: 'Валентин', passport_series: 'МН', passport_numbers: 723_368,
-                          rsr_first: rsr1, rsr_last: rsr3, user: user2)
+                          rsr_first: rsr1, rsr_last: rsr3)
 ticket3 = Ticket.create(last_name: 'Гринь', first_name: 'Дмитрий', passport_series: 'МК', passport_numbers: 325_368,
-                          rsr_first: rsr6, rsr_last: rsr5, user: user1)
+                          rsr_first: rsr6, rsr_last: rsr5)

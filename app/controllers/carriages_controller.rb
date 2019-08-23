@@ -1,4 +1,5 @@
 class CarriagesController < ApplicationController
+  before_action :authenticate_user!
   before_action :load_carriage, only: [:show, :edit, :update, :destroy]
   before_action :load_train, only: [:index, :create, :new]
 

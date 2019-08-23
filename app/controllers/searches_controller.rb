@@ -1,4 +1,5 @@
 class SearchesController < ApplicationController
+  before_action :authenticate_user!
   def show
     search_route
     @station_first = RailwayStation.find(params[:station_first_id])
