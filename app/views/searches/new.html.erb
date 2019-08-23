@@ -1,0 +1,16 @@
+<h1>Новый поиск</h1>
+<%= form_with(url: search_path, local: true,  method: :get) do |form| %>
+  <div class="field">
+    <%= form.label :station_first_id, "Cтанция отправления" %>
+    <%= form.select(:station_first_id, @stations.map {|s| [ s.title, s.id ] }) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :station_last_id, "Cтанция прибытия" %>
+    <%= form.select(:station_last_id, @stations.map {|s| [ s.title, s.id ] }) %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

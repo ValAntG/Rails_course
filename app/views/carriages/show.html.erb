@@ -16,6 +16,11 @@
 </p>
 
 <p>
+  <strong>Номер вагона в поезде:</strong>
+  <%= @carriage.number %>
+</p>
+
+<p>
   <em>Количество нижних мест:</em>
   <%= @carriage.place_botton ||= 0 %>
 </p>
@@ -40,5 +45,5 @@
   <%= @carriage.seat  ||= 0 %>
 </p>
 
-<%= link_to 'Редактировать', edit_carriage_path(@carriage) %> |
-<%= link_to 'Назад', carriages_path %>
+<%= link_to 'Редактировать вагон', edit_carriage_path(@carriage) %> |
+<%= link_to 'Назад к информации о поезде', train_path(@carriage.train) %>
