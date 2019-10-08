@@ -3,7 +3,6 @@ class Admin::TicketsController < Admin::BaseController
 
   def index
     @tickets = Ticket.all
-    binding.pry
   end
 
   def show

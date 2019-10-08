@@ -15,7 +15,7 @@
 
     <% if user_signed_in? %>
       <p>
-        Аккаунт: <%= current_user.email %>
+        <span>Здравствуйте, <%= current_user.name %></span>
         <%= link_to "Выйти", destroy_user_session_path, method: :delete %>
       </p>
       <% if current_user.admin? %>

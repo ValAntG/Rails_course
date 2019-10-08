@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(version: 2019_10_03_151007) do
 
   create_table "users", force: :cascade do |t|
     t.string "name", default: "", null: false
-    t.string "string", default: "", null: false
+    t.string "surname", null: false
     t.string "workgroup"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

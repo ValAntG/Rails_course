@@ -27,6 +27,5 @@ class SearchesController < ApplicationController
       lastrsr = rsrs.detect { |rsr| rsr.railway_station_id == params[:station_last_id].to_i && rsr.position > firstrsr.position }
       @search_rsr.push({firstrsr: firstrsr, lastrsr: lastrsr, route: route}) if lastrsr
     end
-    binding.pry
   end
 end

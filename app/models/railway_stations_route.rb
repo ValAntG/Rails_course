@@ -3,8 +3,9 @@ class RailwayStationsRoute < ApplicationRecord
 
   belongs_to :railway_station
   belongs_to :route
-  # belongs_to :train
+
   has_many :tickets
+  
   after_create :set_name
 
   private

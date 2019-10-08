@@ -24,6 +24,7 @@ class Admin::RoutesController < Admin::BaseController
           render :new
         end
       stations_add_route
+
     end
   end
 
@@ -49,7 +50,6 @@ class Admin::RoutesController < Admin::BaseController
   def stations_add_route
     @route_stations = route_params[:railway_stations_ids].reject!(&:empty?)
     @route_stations.each_with_index do |station, position|
-      binding.pry
       @route.railway_stations_routes.create!(railway_station_id: station, route_id: @route.id, position: position)
     end
   end

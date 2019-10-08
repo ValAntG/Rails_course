@@ -21,21 +21,9 @@ rsr5 = RailwayStationsRoute.create(railway_station_id: 2, route_id: 2, position:
 rsr6 = RailwayStationsRoute.create(railway_station_id: 3, route_id: 2, position: 1, arrival: '00:00',
                                   departure: '23:05')
 
-carriage1 = Carriage.create(type: "CoupeCarriage", number: 1, place_top: 26, place_botton: 26, train: train1)
-carriage2 = Carriage.create(type: "EconomCarriage", number: 2, place_top: 18, place_botton: 18, place_top_side: 9,
-                              place_botton_side: 9, train: train1)
-carriage3 = Carriage.create(type: "ExpressCarriage", number: 3, seat: 60, train: train1)
-carriage4 = Carriage.create(type: "ExpressCarriage", number: 4, seat: 60, train: train1)
-carriage5 = Carriage.create(type: "VipCarriage", number: 5, place_botton: 18, train: train1)
-
-# user1 = User.create(name: 'Valentyn', email: "admin@mail.ru", admin: true)
-# user2 = User.create(name: 'Dmitriy', email: "qq@mail.ru", admin: false)
-
-# ticket1 = Ticket.create(last_name: 'Гринь', first_name: 'Дмитрий', passport_series: 'МК', passport_numbers: 325_368,
-#                           rsr_first: rsr1, rsr_last: rsr3, user: "qq@mail.ru")
-# ticket2 = Ticket.create(last_name: 'Геврасёв', first_name: 'Валентин', passport_series: 'МН', passport_numbers: 723_368,
-#                           rsr_first: rsr1, rsr_last: rsr3, user: "qq@mail.ru")
-# ticket3 = Ticket.create(last_name: 'Гринь', first_name: 'Дмитрий', passport_series: 'МК', passport_numbers: 325_368,
-#                           rsr_first: rsr6, rsr_last: rsr5, user: "qq@mail.ru")
-# ticket4 = Ticket.create(last_name: 'Дарк', first_name: 'Антон', passport_series: 'МС', passport_numbers: 156_189,
-#                           rsr_first: rsr6, rsr_last: rsr5, user: "qq@mail.ru")
+carriage1 = Carriage.create(type: 'CoupeCarriage', number: 1, place_top: 26, place_botton: 26, train: train1)
+carriage2 = Carriage.create(type: 'EconomCarriage', number: 2, place_top: 18, place_botton: 18, place_top_side: 9,
+                                                    place_botton_side: 9, train: train1)
+carriage3 = Carriage.create(type: 'ExpressCarriage', number: 3, seat: 60, train: train1)
+carriage4 = Carriage.create(type: 'ExpressCarriage', number: 4, seat: 60, train: train1)
+carriage5 = Carriage.create(type: 'VipCarriage', number: 5, place_botton: 18, train: train1)

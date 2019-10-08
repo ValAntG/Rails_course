@@ -3,9 +3,7 @@ class TicketsController < ApplicationController
   before_action :set_ticket, only: [:show, :edit, :update, :destroy]
 
   def index
-    # binding.pry
     @tickets = current_user.tickets
-    # @tickets = Ticket.all
   end
 
   def show
@@ -16,13 +14,6 @@ class TicketsController < ApplicationController
     station_last = ticket.rsr_last.railway_station
     time_first = ticket.rsr_first.departure
     time_last = ticket.rsr_last.arrival
-    # binding.pry
-    # ticket = Ticket.find(params[:id])
-    # train = Train.find(RailwayStationsRoute.find(ticket.rsr_first_id).route.train_id)
-    # station_first = RailwayStation.find(RailwayStationsRoute.find(ticket.rsr_first_id).railway_station_id)
-    # station_last = RailwayStation.find(RailwayStationsRoute.find(ticket.rsr_last_id).railway_station_id)
-    # time_first = RailwayStationsRoute.find(ticket.rsr_first_id).departure
-    # time_last = RailwayStationsRoute.find(ticket.rsr_last_id).arrival
     @ticket_info = {train: train.name, station_first: station_first.title, station_last: station_last.title,
                     time_first: time_first, time_last: time_last}
   end
