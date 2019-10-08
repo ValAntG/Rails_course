@@ -14,12 +14,19 @@
     <p class="alert"><%= alert %></p>
 
     <% if user_signed_in? %>
-      <%= link_to "Выйти", destroy_user_session_path, method: :delete %>
+      <p>
+        Аккаунт: <%= current_user.email %>
+        <%= link_to "Выйти", destroy_user_session_path, method: :delete %>
+      </p>
+      <% if current_user.admin? %>
+        <%= render 'header_admin' %>
+      <% else %>
+        <%= render 'header' %>
+      <% end %>
     <% else %>
       <%= link_to "Войти", new_user_session_path %>
     <% end %>
 
-    <%= render 'header' %>
     <%= yield %>
     <%= render 'footer' %>
   </body>

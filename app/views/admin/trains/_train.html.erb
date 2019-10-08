@@ -1,0 +1,5 @@
+<p>
+  <%= link_to "Поезд № #{train.name}", [:admin, train] %> -
+  <%= link_to 'Редактировать', edit_admin_train_path(train) %> -
+  <%= link_to 'Удалить', [:admin, train], method: :delete, data: { confirm: 'Вы действительно хотите удалить?' } %>
+</p>

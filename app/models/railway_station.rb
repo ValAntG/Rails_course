@@ -1,10 +1,10 @@
 class RailwayStation < ApplicationRecord
   validates :title, uniqueness: true
 
-  has_many :trains
+  has_many :trains, dependent: :nullify, foreign_key: 'current_station_id'
   has_many :railway_stations_routes
   has_many :routes, through: :railway_stations_routes
-  has_many :trains, through: :railway_stations_routes
+  # has_many :trains, through: :railway_stations_routes
 
   # scope :ordered, -> { join(:railway_stations_routes).order("railway_stations_routes.position").uniq }
 

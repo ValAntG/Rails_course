@@ -1,0 +1,39 @@
+<p><strong>Посадочный документ:</strong></p>
+
+<p>
+  <%= "Номер билета #{@ticket.id}" %>
+</p>
+
+<p>
+  <%= "Фамилия #{@ticket.last_name}" %>
+</p>
+
+<p>
+  <%= "Имя #{@ticket.first_name}" %>
+</p>
+
+<p>
+  <%= "Отчество #{@ticket.father_name}" %>
+</p>
+
+<p>
+  <%= "Документ серии #{@ticket.passport_series} № #{@ticket.passport_numbers}" %>
+</p>
+
+<p>
+  <%= "Номер поезда #{@ticket_info[:train]}" %>
+</p>
+
+<p>
+  <%= "Отправление со станции #{@ticket_info[:station_first]} в #{@ticket_info[:time_first]}" %>
+</p>
+
+<p>
+  <%= "Прибытие на станцию #{@ticket_info[:station_last]} в #{@ticket_info[:time_last]}" %>
+</p>
+
+<p>
+  <%= "Билет куплен #{@ticket[:created_at]}" %>
+</p>
+
+

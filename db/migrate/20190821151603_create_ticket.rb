@@ -8,7 +8,8 @@ class CreateTicket < ActiveRecord::Migration[5.2]
       t.integer :passport_numbers
       t.integer :rsr_first_id
       t.integer :rsr_last_id
-      t.integer :user_id
+      # t.integer :user_id
+      t.belongs_to :user, index: true
 
       t.timestamps
     end

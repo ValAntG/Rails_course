@@ -1,4 +1,33 @@
 <h1>Билеты</h1>
+<table>
+  <thead>
+  <tr>
+    <td width="100px">Билет</td>
+    <td>Фамилия</td>
+    <td>Имя</td>
+    <td>Отчество</td>
+    <td>Станция отправления</td>
+    <td>Время отправления</td>
+    <td>Станция прибытия</td>
+    <td>Время прибытия</td>
+    <td>Удалить</td>
+  </tr>
+  </thead>
+  <tbody>
+  <% @tickets.each do |ticket| %>
+    <tr>
+      <td><%= ticket.id %></td>
+      <td><%= ticket.last_name %></td>
+      <td><%= ticket.first_name %></td>
+      <td><%= ticket.father_name %></td>
+      <td><%= ticket.rsr_first.railway_station.title %></td>
+      <td><%= ticket.rsr_first.departure %></td>
+      <td><%= ticket.rsr_last.railway_station.title %></td>
+      <td><%= ticket.rsr_last.arrival %></td>
+      <td><%= link_to 'Удалить', [:admin, ticket], method: :delete, data: { confirm: 'Вы действительно хотите удалить?' } %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
 
 <br>
-
