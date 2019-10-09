@@ -19,7 +19,7 @@ class Admin::CarriagesController < Admin::BaseController
   def create
     @carriage = @train.carriages.new(carriage_params)
     if @carriage.save
-      redirect_to train_carriages_path
+      redirect_to train_carriages_path, notice: 'Carriage was successfully created.'
     else
       render :new
     end
@@ -27,7 +27,7 @@ class Admin::CarriagesController < Admin::BaseController
 
   def update
     if @carriage.update(carriage_params)
-      redirect_to @carriage.becomes(Carriage)
+      redirect_to [:admin, @carriage.becomes(Carriage)], notice: 'Carriage was successfully updated.'
     else
       render :edit
     end

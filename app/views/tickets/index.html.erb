@@ -3,6 +3,7 @@
   <thead>
   <tr>
     <td width="100px">Билет</td>
+    <td>Пользователь id</td>
     <td>Фамилия</td>
     <td>Имя</td>
     <td>Отчество</td>
@@ -10,6 +11,7 @@
     <td>Время отправления</td>
     <td>Станция прибытия</td>
     <td>Время прибытия</td>
+    <td><%= 'Редактировать' if current_user.admin? %></td>
     <td>Удалить</td>
   </tr>
   </thead>
@@ -17,6 +19,7 @@
   <% @tickets.each do |ticket| %>
     <tr>
       <td><%= ticket.id %></td>
+      <td><%= ticket.user.email %></td>
       <td><%= ticket.last_name %></td>
       <td><%= ticket.first_name %></td>
       <td><%= ticket.father_name %></td>
@@ -24,6 +27,7 @@
       <td><%= ticket.rsr_first.departure %></td>
       <td><%= ticket.rsr_last.railway_station.title %></td>
       <td><%= ticket.rsr_last.arrival %></td>
+      <td><%= link_to 'Редактировать', edit_admin_ticket_path(ticket) if current_user.admin? %></td>
       <td><%= link_to 'Удалить', [:admin, ticket], method: :delete, data: { confirm: 'Вы действительно хотите удалить?' } %></td>
     </tr>
   <% end %>

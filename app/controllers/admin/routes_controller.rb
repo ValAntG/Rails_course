@@ -24,7 +24,6 @@ class Admin::RoutesController < Admin::BaseController
           render :new
         end
       stations_add_route
-
     end
   end
 

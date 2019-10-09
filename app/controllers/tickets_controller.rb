@@ -3,17 +3,15 @@ class TicketsController < ApplicationController
   before_action :set_ticket, only: [:show, :edit, :update, :destroy]
 
   def index
-    @tickets = current_user.tickets
+    current_user.admin? ? @tickets = Ticket.all : @tickets = current_user.tickets
   end
 
   def show
-    @ticket
-    ticket = Ticket.find(params[:id])
-    train = ticket.rsr_first.route.train
-    station_first = ticket.rsr_first.railway_station
-    station_last = ticket.rsr_last.railway_station
-    time_first = ticket.rsr_first.departure
-    time_last = ticket.rsr_last.arrival
+    train = @ticket.rsr_first.route.train
+    station_first = @ticket.rsr_first.railway_station
+    station_last = @ticket.rsr_last.railway_station
+    time_first = @ticket.rsr_first.departure
+    time_last = @ticket.rsr_last.arrival
     @ticket_info = {train: train.name, station_first: station_first.title, station_last: station_last.title,
                     time_first: time_first, time_last: time_last}
   end
