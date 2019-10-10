@@ -15,9 +15,9 @@
 
   <div class="field">
     <%= form.label :railway_stations, "Cтанции маршрута" %>
-    <%= form.select(:railway_stations_ids, RailwayStation.all.collect {|s| [ s.title, s.id ] },
-                                                                        { :prompt => "Выберите станции"},
-                                                                        { :multiple => true, :size => 5}) %>
+    <%= form.select(:railway_stations_ids, RailwayStation.all.collect { |s| [ s.title, s.id ] },
+                                                                        { :prompt => "Выберите станции" },
+                                                                        { :multiple => true, :size => 5 }) %>
   </div>
 
   <div class="actions">

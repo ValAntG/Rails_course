@@ -5,7 +5,7 @@ class RailwayStationsRoute < ApplicationRecord
   belongs_to :route
 
   has_many :tickets
-  
+
   after_create :set_name
 
   private

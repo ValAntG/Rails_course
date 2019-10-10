@@ -15,6 +15,7 @@ class RailwayStation < ApplicationRecord
   end
 
   protected
+  
   def station_route(route)
     @station_route ||= railway_stations_routes.where(route: route).first
   end

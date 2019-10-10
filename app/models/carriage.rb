@@ -7,10 +7,10 @@ class Carriage < ApplicationRecord
   belongs_to :train
   before_validation :set_number
 
-  scope :express, -> {where(type: 'ExpressCarriage')}
-  scope :econom, -> {where(type: 'EconomCarriage')}
-  scope :coupe, -> {where(type: 'CoupeCarriage')}
-  scope :vip, -> {where(type: 'VipCarriage')}
+  scope :express, -> { where(type: 'ExpressCarriage') }
+  scope :econom, -> { where(type: 'EconomCarriage') }
+  scope :coupe, -> { where(type: 'CoupeCarriage') }
+  scope :vip, -> { where(type: 'VipCarriage') }
 
   private
 

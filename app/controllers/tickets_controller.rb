@@ -12,8 +12,8 @@ class TicketsController < ApplicationController
     station_last = @ticket.rsr_last.railway_station
     time_first = @ticket.rsr_first.departure
     time_last = @ticket.rsr_last.arrival
-    @ticket_info = {train: train.name, station_first: station_first.title, station_last: station_last.title,
-                    time_first: time_first, time_last: time_last}
+    @ticket_info = { train: train.name, station_first: station_first.title, station_last: station_last.title,
+                    time_first: time_first, time_last: time_last }
   end
 
   def new
@@ -24,7 +24,7 @@ class TicketsController < ApplicationController
   end
 
   def create
-    user_id = {user_id: current_user[:id] }
+    user_id = { user_id: current_user[:id] }
     @ticket = Ticket.new((train_params).merge(ticket_params).merge(user_id))
     respond_to do |format|
       if @ticket.save
@@ -43,6 +43,7 @@ class TicketsController < ApplicationController
   end
 
   private
+  
   def set_ticket
     @ticket = Ticket.find(params[:id])
   end
@@ -54,6 +55,6 @@ class TicketsController < ApplicationController
   def train_params
     first_station = RailwayStationsRoute.find(params[:ticket_rsr_first])
     last_station = RailwayStationsRoute.find(params[:ticket_rsr_last])
-    train_ticket = { rsr_first_id: first_station.id, rsr_last_id: last_station.id}
+    train_ticket = { rsr_first_id: first_station.id, rsr_last_id: last_station.id }
   end
 end
