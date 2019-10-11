@@ -1,6 +1,9 @@
 class Admin::RoutesController < Admin::BaseController
   before_action :set_route, only: [:show, :edit, :update, :destroy]
 
+  # skip_before_action :verify_authenticity_token
+  # protect_from_forgery prepend: true, with: :exception
+
   def index
     @routes = Route.all
   end
@@ -19,7 +22,7 @@ class Admin::RoutesController < Admin::BaseController
     ActiveRecord::Base.transaction do
       @route = Route.new(name: 'name')
         if @route.save
-          redirect_to [:admin, @route]
+          redirect_to [:admin, @route], notice: 'Route was successfully created.'
         else
           render :new
         end
@@ -28,13 +31,15 @@ class Admin::RoutesController < Admin::BaseController
   end
 
   def update
+    binding.pry
     ActiveRecord::Base.transaction do
       if @route.update(name: 'name')
-        redirect_to [:admin, @route]
+        redirect_to [:admin, @route], notice: 'Route was successfully updated.'
       else
         render :edit
       end
       @route.railway_stations_routes.clear
+      binding.pry
       stations_add_route
     end
   end
@@ -47,7 +52,7 @@ class Admin::RoutesController < Admin::BaseController
   private
 
   def stations_add_route
-    @route_stations = route_params[:railway_stations_ids].reject!(&:empty?)
+    @route_stations = route_params[:railway_stations_ids].reject(&:blank?)
     @route_stations.each_with_index do |station, position|
       @route.railway_stations_routes.create!(railway_station_id: station, route_id: @route.id, position: position)
     end
