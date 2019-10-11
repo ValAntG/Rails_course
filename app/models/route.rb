@@ -3,6 +3,6 @@ class Route < ApplicationRecord
 
   has_one :train
 
-  has_many :railway_stations_routes, ->  order('position')
-  has_many :railway_stations, through: :railway_stations_routes
+  has_many :railway_stations_routes
+  has_many :railway_stations, -> { order('position') }, through: :railway_stations_routes
 end

@@ -55,6 +55,19 @@ RSpec.describe Admin::RailwayStationsController, type: :controller do
   end
 
   describe 'POST #create' do
+    it 'should not creating a railway stations without authorization' do
+      params = { railway_station: { title: 'Kiev' } }
+      expect { post(:create, params: params) }.not_to change(RailwayStation, :count)
+      expect(response).to have_http_status(302)
+    end
+
+    it 'should not show a railway stations user without admin rights' do
+      check_user
+      params = { railway_station: { title: 'Kiev' } }
+      expect { post(:create, params: params) }.not_to change(RailwayStation, :count)
+      expect(response).to have_http_status(302)
+    end
+
     it 'should success create railway stations' do
       check_admin
       params = { railway_station: { title: 'Kiev' } }
@@ -68,19 +81,6 @@ RSpec.describe Admin::RailwayStationsController, type: :controller do
       post(:create, params: params)
       expect(response).to redirect_to(admin_railway_station_path(RailwayStation.last))
       expect(flash[:notice]).to eq 'Railway station was successfully created.'
-    end
-
-    it 'should not creating a railway stations without authorization' do
-      params = { railway_station: { title: 'Kiev' } }
-      expect { post(:create, params: params) }.to change(RailwayStation, :count).by(0)
-      expect(response).to have_http_status(302)
-    end
-
-    it 'should not show a railway stations user without admin rights' do
-      check_user
-      params = { railway_station: { title: 'Kiev' } }
-      expect { post(:create, params: params) }.to change(RailwayStation, :count).by(0)
-      expect(response).to have_http_status(302)
     end
   end
 
