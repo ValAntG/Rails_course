@@ -10,8 +10,24 @@
   </head>
 
   <body>
-  <%= render 'header' %>
-  <%= yield %>
-  <%= render 'footer' %>
+    <p id="notice" class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+
+    <% if user_signed_in? %>
+      <p>
+        <span>Здравствуйте, <%= current_user.name %></span>
+        <%= link_to "Выйти", destroy_user_session_path, method: :delete %>
+      </p>
+      <% if current_user.admin? %>
+        <%= render 'header_admin' %>
+      <% else %>
+        <%= render 'header' %>
+      <% end %>
+    <% else %>
+      <%= link_to "Войти", new_user_session_path %>
+    <% end %>
+
+    <%= yield %>
+    <%= render 'footer' %>
   </body>
 </html>

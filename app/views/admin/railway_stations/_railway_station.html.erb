@@ -1,0 +1,5 @@
+<p>
+  <%= link_to railway_station.title, [:admin, railway_station] %> -
+  <%= link_to 'Редактировать', edit_admin_railway_station_path(railway_station) %> -
+  <%= link_to 'Удалить', [:admin, railway_station], method: :delete, data: { confirm: 'Вы действительно хотите удалить?' } %>
+</p>

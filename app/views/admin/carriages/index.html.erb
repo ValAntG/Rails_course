@@ -1,0 +1,10 @@
+<h1>Вагоны</h1>
+
+  <% @carriages.each do |carriage| %>
+    <%= render :partial => 'admin/carriages/carriage', :locals => { :carriage => carriage } %>
+  <% end %>
+
+<br>
+
+<%= link_to 'Новый вагон', new_admin_train_carriage_path %>
+<%= link_to 'Назад', admin_train_path(@train) %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_21_151603) do
+ActiveRecord::Schema.define(version: 2019_10_03_151007) do
 
   create_table "carriages", force: :cascade do |t|
     t.integer "number"
@@ -35,7 +35,6 @@ ActiveRecord::Schema.define(version: 2019_08_21_151603) do
     t.integer "route_id"
     t.integer "railway_station_id"
     t.integer "position", null: false
-    t.integer "train_id"
     t.time "arrival"
     t.time "departure"
     t.datetime "created_at", null: false
@@ -59,6 +58,7 @@ ActiveRecord::Schema.define(version: 2019_08_21_151603) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_tickets_on_user_id"
   end
 
   create_table "trains", force: :cascade do |t|
@@ -73,9 +73,23 @@ ActiveRecord::Schema.define(version: 2019_08_21_151603) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name"
+    t.string "name", default: "", null: false
+    t.string "surname", null: false
+    t.string "workgroup"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
+    t.boolean "admin", default: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
 end
