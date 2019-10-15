@@ -32,22 +32,34 @@ class Admin::RoutesController < Admin::BaseController
 
   def update
     binding.pry
-    ActiveRecord::Base.transaction do
-      if @route.update(name: 'name')
-        redirect_to [:admin, @route], notice: 'Route was successfully updated.'
-      else
-        render :edit
-      end
-      @route.railway_stations_routes.clear
-      binding.pry
-      stations_add_route
+    if @route.railway_stations_routes.find_by(railway_station_id: params[:railway_station_id]).update(rsr_params)
+      redirect_to [:admin, @route], notice: 'Route was successfully updated.'
+    else
+      render :edit
     end
+
+
+    # ActiveRecord::Base.transaction do
+    #   if @route.update(name: 'name')
+    #     redirect_to [:admin, @route], notice: 'Route was successfully updated.'
+    #   else
+    #     render :edit
+    #   end
+    #   @route.railway_stations_routes.clear
+    #   binding.pry
+    #   stations_add_route
+    # end
   end
 
-  def destroy
-    @route.destroy
-    redirect_to routes_path
-  end
+  # def destroy
+  #   @route.destroy
+  #   redirect_to admin_routes_path
+  # end
+
+  # def destroy_station_in_route(position)
+  #   destroy_station(position)
+  #   redirect_to [:admin, @route]
+  # end
 
   private
 
@@ -63,6 +75,12 @@ class Admin::RoutesController < Admin::BaseController
   end
 
   def route_params
+    # binding.pry
     params.require(:route).permit(:name, railway_stations_ids: [])
+    # , :position, :arrival, :departure, :route_id, :station_id
+  end
+
+  def rsr_params
+    params.permit(:position, :arrival, :departure, :route_id, :railway_station_id)
   end
 end

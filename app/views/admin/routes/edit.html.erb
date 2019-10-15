@@ -1,4 +1,4 @@
-<h1>Изменить маршрут</h1>
+<h1><%= t('.title') %></h1>
 
 <%= form_with(model: [:admin, @route], local: true) do |form| %>
   <% if @route.errors.any? %>
@@ -14,15 +14,15 @@
   <% end %>
 
   <p>
-    <strong>Станции:</strong>
+    <strong><%= t('.stations') %></strong>
     <% if @route.railway_stations.empty? %>
-      Cписок пуст
+      <%= t('common.empty') %>
     <% else %>
       <table>
         <thead>
         <tr>
-          <td width="100px">Название</td>
-          <td>Позиция</td>
+          <td width="100px"><%= t('.name') %></td>
+          <td><%= t('.position') %></td>
         </tr>
         </thead>
         <tbody>
@@ -31,17 +31,22 @@
             <td><%= station.title %></td>
             <td>
               <%= form_tag update_position_admin_railway_station_path(station), method: :patch do %>
-                <%= number_field_tag :position, station.position_in(@route) %>
+                <%= number_field_tag(:position, station.position_in(@route), options = {in: 0..@route.railway_stations_routes.size}) %>
+                <%= time_field_tag :arrival, station.arrival_in(@route) %>
+                <%= time_field_tag :departure, station.departure_in(@route) %>
                 <%= hidden_field_tag :route_id, @route.id %>
-                <%= submit_tag "Изменить" %>
+                <%= hidden_field_tag :railway_station_id, station.id %>
+                <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+                <%= submit_tag t('.submit') %>
               <% end %>
             </td>
           </tr>
         <% end %>
+
         </tbody>
       </table>
     <% end %>
   </p>
 <% end %>
 
-<%= link_to 'Назад', admin_routes_path %>
+<%= link_to t('common.back'), admin_routes_path %>

@@ -12,11 +12,11 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :title, "Имя станции" %>
+    <%= form.label :title %>
     <%= form.text_field :title %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit t('.submit', action: @railway_station.new_record? ? 'Создать' : 'Редактировать')%>
   </div>
 <% end %>

@@ -1,7 +1,7 @@
-<h1>Железнодорожные станции</h1>
+<h1><%= t('.title') %></h1>
 
 <%= render partial: "railway_station", collection: @railway_stations %>
 
 <br>
 
-<%= link_to 'Новая железнодорожная станция', new_admin_railway_station_path %>
+<%= link_to t('.create'), new_admin_railway_station_path %>

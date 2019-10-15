@@ -1,7 +1,7 @@
-<h1>Маршруты</h1>
+<h1><%= t('.title') %></h1>
 
 <%= render partial: "route", collection: @routes %>
 
 <br>
 
-<%= link_to 'Новый маршрут', new_admin_route_path %>
+<%= link_to t('.create'), new_admin_route_path %>

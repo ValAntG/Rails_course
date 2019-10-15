@@ -1,5 +1,5 @@
 <p>
   <%= link_to route.name, [:admin, route] %> -
-  <%= link_to 'Редактировать', edit_admin_route_path(route) %> -
-  <%= link_to 'Удалить', [:admin, route], method: :delete, data: { confirm: 'Вы действительно хотите удалить?' } %>
+  <%= link_to t('common.edit'), edit_admin_route_path(route) %> -
+  <%= link_to t('common.delete'), [:admin, route], method: :delete, data: { confirm: 'Вы действительно хотите удалить?' } %>
 </p>

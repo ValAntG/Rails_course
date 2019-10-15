@@ -5,14 +5,28 @@ class RailwayStation < ApplicationRecord
   has_many :railway_stations_routes
   has_many :routes, through: :railway_stations_routes
 
-  def update_position(route, position)
-    station_route = station_route(route)
-    station_route.update(position: position) if station_route
-  end
+  # def update_position(route, position, arrival, departure)
+  #   station_route = station_route(route)
+  #   station_route.update(position: position, arrival: arrival, departure: departure) if station_route
+  # end
 
   def position_in(route)
     station_route(route).try(:position)
   end
+
+  def arrival_in(route)
+    binding.pry
+    station_route(route).try(:arrival)
+  end
+
+  def departure_in(route)
+    station_route(route).try(:departure)
+  end
+
+  # def destroy_station(position)
+  #   binding.pry
+  #   railway_stations_routes[position].delete
+  # end
 
   protected
 

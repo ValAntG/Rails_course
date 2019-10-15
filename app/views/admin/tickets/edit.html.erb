@@ -1,15 +1,15 @@
 <h1>Изменить билет</h1>
 
 <%= form_with(model: [:admin, @ticket], local: true) do |form| %>
-  <%= form.label(:last_name, "Фамилия") %>
+  <%= form.label(:last_name) %>
   <%= form.text_field :last_name %>
-  <%= form.label(:first_name, "Имя") %>
+  <%= form.label(:first_name) %>
   <%= form.text_field :first_name %>
-  <%= form.label(:father_name, "Отчество") %>
+  <%= form.label(:father_name) %>
   <%= form.text_field :father_name %>
-  <%= form.label(:passport_series, "Серия паспорта") %>
+  <%= form.label(:passport_series) %>
   <%= form.text_field :passport_series %>
-  <%= form.label(:passport_numbers, "Номер паспорта") %>
+  <%= form.label(:passport_numbers) %>
   <%= form.text_field :passport_numbers %>
   <%= hidden_field_tag :ticket_rsr_first, params[:ticket_rsr_first] %>
   <%= hidden_field_tag :ticket_rsr_last, params[:ticket_rsr_last] %>

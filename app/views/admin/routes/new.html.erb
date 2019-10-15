@@ -1,4 +1,4 @@
-<h1>Новый маршрут</h1>
+<h1><%= t('.title') %></h1>
 
 <%= form_with(model: [:admin, @route], local: true) do |form| %>
   <% if @route.errors.any? %>
@@ -14,15 +14,15 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :railway_stations, "Cтанции маршрута" %>
+    <%= form.label :railway_stations %>
     <%= form.select(:railway_stations_ids, RailwayStation.all.collect { |s| [ s.title, s.id ] },
-                                                                        { :prompt => "Выберите станции" },
-                                                                        { :multiple => true, :size => 5 }) %>
+                                                                      { :prompt => false },
+                                                                      { :multiple => true, :size => 5 }) %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit t('.submit') %>
   </div>
 <% end %>
 
-<%= link_to 'Назад', admin_routes_path %>
+<%= link_to t('common.back'), admin_routes_path %>
