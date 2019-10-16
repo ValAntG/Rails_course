@@ -1,5 +1,5 @@
 class Admin::RailwayStationsController < Admin::BaseController
-  before_action :set_railway_station, only: [:show, :edit, :update, :destroy, :update_position]
+  before_action :set_railway_station, only: [:show, :edit, :update, :destroy]
 
   def index
     @railway_stations = RailwayStation.all
@@ -43,12 +43,6 @@ class Admin::RailwayStationsController < Admin::BaseController
       format.html { redirect_to railway_stations_url, notice: 'Railway station was successfully destroyed.' }
     end
   end
-
-  # def update_position
-  #   @route = Route.find(params[:route_id])
-  #   @railway_station.update_position(@route, params[:position], params[:arrival], params[:departure])
-  #   redirect_to [:admin, @route]
-  # end
 
   private
 

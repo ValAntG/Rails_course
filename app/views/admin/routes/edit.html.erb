@@ -23,29 +23,39 @@
         <tr>
           <td width="100px"><%= t('.name') %></td>
           <td><%= t('.position') %></td>
+          <td><%= t('.arrival') %></td>
+          <td><%= t('.departure') %></td>
         </tr>
         </thead>
         <tbody>
         <% @route.railway_stations.each do |station| %>
           <tr>
             <td><%= station.title %></td>
-            <td>
-              <%= form_tag update_position_admin_railway_station_path(station), method: :patch do %>
-                <%= number_field_tag(:position, station.position_in(@route), options = {in: 0..@route.railway_stations_routes.size}) %>
-                <%= time_field_tag :arrival, station.arrival_in(@route) %>
-                <%= time_field_tag :departure, station.departure_in(@route) %>
+            <%= form_tag update_position_admin_route_path(station), method: :patch do %>
+                <% binding.pry %>
+                <td><%= number_field_tag(:position, @route.position_in(station),
+                                         options = {in: 0..@route.railway_stations_routes.size}) %></td>
+                <td><%= time_field_tag :arrival, @route.arrival_in(station).try(:strftime, '%H:%M') %></td>
+                <td><%= time_field_tag :departure, @route.departure_in(station).try(:strftime, '%H:%M') %></td>
                 <%= hidden_field_tag :route_id, @route.id %>
                 <%= hidden_field_tag :railway_station_id, station.id %>
                 <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-                <%= submit_tag t('.submit') %>
-              <% end %>
-            </td>
+                <td><%= submit_tag t('.submit.edit') %></td>
+            <% end %>
           </tr>
         <% end %>
-
         </tbody>
       </table>
     <% end %>
+  </p>
+
+  <p>
+  <div class="field">
+    <%= form_tag add_station_admin_route_path, method: :patch do %>
+      <%= form.select(:railway_stations_id, RailwayStation.all.collect { |s| [ s.title, s.id ] }) %>
+      <%= form.submit t('.submit.destroy') %>
+    <% end %>
+  </div>
   </p>
 <% end %>
 

@@ -1,5 +1,5 @@
 class Admin::RoutesController < Admin::BaseController
-  before_action :set_route, only: [:show, :edit, :update, :destroy]
+  before_action :set_route, only: [:show, :edit, :update, :destroy, :update_position, :add_station]
 
   # skip_before_action :verify_authenticity_token
   # protect_from_forgery prepend: true, with: :exception
@@ -37,8 +37,6 @@ class Admin::RoutesController < Admin::BaseController
     else
       render :edit
     end
-
-
     # ActiveRecord::Base.transaction do
     #   if @route.update(name: 'name')
     #     redirect_to [:admin, @route], notice: 'Route was successfully updated.'
@@ -51,10 +49,23 @@ class Admin::RoutesController < Admin::BaseController
     # end
   end
 
-  # def destroy
-  #   @route.destroy
-  #   redirect_to admin_routes_path
-  # end
+  def update_position
+    binding.pry
+    @route = Route.find(params[:route_id])
+    @railway_station.update_position(@route, params[:position], params[:arrival], params[:departure])
+    redirect_to [:admin, @route]
+  end
+
+  def add_station
+    @add_station = add_station_params[:railway_stations_id]
+    @route.railway_stations_routes.create!(railway_station_id: @add_station, route_id: @route.id, position: @route.railway_stations_routes.size)
+    redirect_to [:admin, @route]
+  end
+
+  def destroy
+    @route.destroy
+    redirect_to admin_routes_path
+  end
 
   # def destroy_station_in_route(position)
   #   destroy_station(position)
@@ -75,10 +86,16 @@ class Admin::RoutesController < Admin::BaseController
   end
 
   def route_params
-    # binding.pry
     params.require(:route).permit(:name, railway_stations_ids: [])
-    # , :position, :arrival, :departure, :route_id, :station_id
   end
+
+  def add_station_params
+    params.require(:route).permit(:name, :railway_stations_id)
+  end
+
+  # def del_station_params
+  #   params.require(:route).permit(:name, :railway_stations_id)
+  # end
 
   def rsr_params
     params.permit(:position, :arrival, :departure, :route_id, :railway_station_id)
