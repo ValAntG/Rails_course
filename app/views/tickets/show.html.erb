@@ -1,39 +1,39 @@
-<p><strong>Посадочный документ:</strong></p>
+<p><strong><%= t('.title') %></strong></p>
 
 <p>
-  <%= "Номер билета #{@ticket.id}" %>
+  <%= "#{t('.number_ticket')} #{@ticket.id}" %>
 </p>
 
 <p>
-  <%= "Фамилия #{@ticket.last_name}" %>
+  <%= "#{t('tickets.common.last_name')} #{@ticket.last_name}" %>
 </p>
 
 <p>
-  <%= "Имя #{@ticket.first_name}" %>
+  <%= "#{t('tickets.common.first_name')} #{@ticket.first_name}" %>
 </p>
 
 <p>
-  <%= "Отчество #{@ticket.father_name}" %>
+  <%= "#{t('tickets.common.father_name')} #{@ticket.father_name}" %>
 </p>
 
 <p>
-  <%= "Документ серии #{@ticket.passport_series} № #{@ticket.passport_numbers}" %>
+  <%= "#{t('tickets.common.passport_series')} #{@ticket.passport_series} № #{@ticket.passport_numbers}" %>
 </p>
 
 <p>
-  <%= "Номер поезда #{@ticket_info[:train]}" %>
+  <%= "#{t('.number_train')} #{@ticket_info[:train]}" %>
 </p>
 
 <p>
-  <%= "Отправление со станции #{@ticket_info[:station_first]} в #{@ticket_info[:time_first]}" %>
+  <%= "#{t('tickets.common.station_first')} #{@ticket_info[:station_first]} в #{@ticket_info[:time_first]}" %>
 </p>
 
 <p>
-  <%= "Прибытие на станцию #{@ticket_info[:station_last]} в #{@ticket_info[:time_last]}" %>
+  <%= "#{t('tickets.common.station_last')} #{@ticket_info[:station_last]} в #{@ticket_info[:time_last]}" %>
 </p>
 
 <p>
-  <%= "Билет куплен #{@ticket[:created_at]}" %>
+  <%= "#{t('.date')} #{@ticket[:created_at]}" %>
 </p>
 
 

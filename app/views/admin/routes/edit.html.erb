@@ -1,62 +1,94 @@
 <h1><%= t('.title') %></h1>
 
-<%= form_with(model: [:admin, @route], local: true) do |form| %>
-  <% if @route.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@route.errors.count, "error") %> prohibited this route from being saved:</h2>
-
-      <ul>
-      <% @route.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+<%= form_with model: [:admin, @route] do |route_form| %>
   <p>
-    <strong><%= t('.stations') %></strong>
-    <% if @route.railway_stations.empty? %>
-      <%= t('common.empty') %>
-    <% else %>
-      <table>
-        <thead>
-        <tr>
-          <td width="100px"><%= t('.name') %></td>
-          <td><%= t('.position') %></td>
-          <td><%= t('.arrival') %></td>
-          <td><%= t('.departure') %></td>
-        </tr>
-        </thead>
-        <tbody>
-        <% @route.railway_stations.each do |station| %>
-          <tr>
-            <td><%= station.title %></td>
-            <%= form_tag update_position_admin_route_path(station), method: :patch do %>
-                <% binding.pry %>
-                <td><%= number_field_tag(:position, @route.position_in(station),
-                                         options = {in: 0..@route.railway_stations_routes.size}) %></td>
-                <td><%= time_field_tag :arrival, @route.arrival_in(station).try(:strftime, '%H:%M') %></td>
-                <td><%= time_field_tag :departure, @route.departure_in(station).try(:strftime, '%H:%M') %></td>
-                <%= hidden_field_tag :route_id, @route.id %>
-                <%= hidden_field_tag :railway_station_id, station.id %>
-                <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-                <td><%= submit_tag t('.submit.edit') %></td>
-            <% end %>
-          </tr>
-        <% end %>
-        </tbody>
-      </table>
-    <% end %>
+    <strong>
+      <%= t('.name_route') %>
+      <%= route_form.text_field :name %>
+      <%= route_form.hidden_field :id %>
+    </strong>
   </p>
 
-  <p>
-  <div class="field">
-    <%= form_tag add_station_admin_route_path, method: :patch do %>
-      <%= form.select(:railway_stations_id, RailwayStation.all.collect { |s| [ s.title, s.id ] }) %>
-      <%= form.submit t('.submit.destroy') %>
+  <br>
+  <p><strong><%= t('.stations') %></strong></p>
+  <table>
+    <thead>
+      <tr>
+        <td width="100px"><%= t('.name_station') %></td>
+        <td><%= t('.position') %></td>
+        <td><%= t('.arrival') %></td>
+        <td><%= t('.departure') %></td>
+      </tr>
+    </thead>
+
+    <tbody>
+    <% @route.railway_stations_routes.each do |rsr| %>
+      <%= route_form.fields_for rsr, index: rsr.id do |rsr_form| %>
+        <tr>
+          <% station = rsr.railway_station %>
+          <td><%= station.title %></td>
+          <td><%= rsr_form.number_field(:position, options = {in: 0..@route.railway_stations_routes.size}) %></td>
+          <td><%= rsr_form.time_field(:arrival, value: rsr.departure.try(:strftime, "%H:%M")) %></td>
+          <td><%= rsr_form.time_field(:departure, value: rsr.departure.try(:strftime, "%H:%M")) %></td>
+        </tr>
+      <% end %>
     <% end %>
-  </div>
+    </tbody>
+  </table>
+
+  <br>
+  <p>
+    <div class="actions">
+      <%= route_form.submit t('common.submit.update') %>
+    </div>
   </p>
 <% end %>
+
+
+<br>
+<p>
+<%= form_with(url: add_station_admin_route_path, method: :patch) do |route_form| %>
+  <div class="field">
+    <strong><%= t('.add_station') %></strong>
+    <%= route_form.select(:add_station_id,
+                          (RailwayStation.all-@route.railway_stations).collect { |s| [ s.title, s.id ] },
+                          { include_blank: true }, :style => "width:150px") %>
+    <%= route_form.submit t('.submit.add') %>
+  </div>
+<% end %>
+</p>
+
+<br>
+<p>
+<%= form_with(url: del_station_admin_route_path, method: :patch) do |route_form| %>
+  <div class="field">
+    <strong><%= t('.del_station') %></strong>
+    <%= route_form.select(:del_station_id, @route.railway_stations.collect { |s| [ s.title, s.id ] },
+                          { include_blank: true }, :style => "width:150px") %>
+    <%= route_form.submit t('.submit.delete') %>
+  </div>
+<% end %>
+</p>
+
+<br>
+<p>
+<%= form_with(url: add_train_admin_route_path, method: :patch) do |route_form| %>
+  <div class="field">
+    <p>
+      <% if @route.train.nil? %>
+        <%= t('.not_train') %>
+      <% else %>
+        <%= t('.train_in') %>
+        <%= @route.train.name %>
+      <% end %>
+    </p>
+    <strong><%= t('.add_train') %></strong>
+    <%= route_form.select(:add_train_id,
+                          Train.all.collect { |t| [ t.name, t.id ] },
+                          { include_blank: true }, :style => "width:150px") %>
+    <%= route_form.submit t('.submit.train') %>
+  </div>
+<% end %>
+</p>
 
 <%= link_to t('common.back'), admin_routes_path %>

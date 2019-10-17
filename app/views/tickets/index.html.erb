@@ -1,34 +1,34 @@
-<h1>Билеты</h1>
+<h1><%= t('.title') %></h1>
 <table>
   <thead>
   <tr>
-    <td width="100px">Билет</td>
-    <td>Пользователь id</td>
-    <td>Фамилия</td>
-    <td>Имя</td>
-    <td>Отчество</td>
-    <td>Станция отправления</td>
-    <td>Время отправления</td>
-    <td>Станция прибытия</td>
-    <td>Время прибытия</td>
-    <td><%= 'Редактировать' if current_user.admin? %></td>
-    <td>Удалить</td>
+    <td><%= t('.ticket') %></td>
+    <td><%= t('tickets.common.user') if current_user.admin? %></td>
+    <td><%= t('tickets.common.last_name') %></td>
+    <td><%= t('tickets.common.first_name') %></td>
+    <td><%= t('tickets.common.father_name') %></td>
+    <td><%= t('tickets.common.station_first') %></td>
+    <td><%= t('tickets.common.station_first_departure') %></td>
+    <td><%= t('tickets.common.station_last') %></td>
+    <td><%= t('tickets.common.station_last_arrival') %></td>
+    <td><%= t('common.edit') if current_user.admin? %></td>
+    <td><%= t('common.delete') %></td>
   </tr>
   </thead>
   <tbody>
   <% @tickets.each do |ticket| %>
     <tr>
       <td><%= ticket.id %></td>
-      <td><%= ticket.user.email %></td>
+      <td><%= ticket.user.email if current_user.admin? %></td>
       <td><%= ticket.last_name %></td>
       <td><%= ticket.first_name %></td>
       <td><%= ticket.father_name %></td>
       <td><%= ticket.rsr_first.railway_station.title %></td>
-      <td><%= ticket.rsr_first.departure %></td>
+      <td><%= ticket.rsr_first.departure.try(:strftime, "%H:%M") %></td>
       <td><%= ticket.rsr_last.railway_station.title %></td>
-      <td><%= ticket.rsr_last.arrival %></td>
-      <td><%= link_to 'Редактировать', edit_admin_ticket_path(ticket) if current_user.admin? %></td>
-      <td><%= link_to 'Удалить', [:admin, ticket], method: :delete, data: { confirm: 'Вы действительно хотите удалить?' } %></td>
+      <td><%= ticket.rsr_last.arrival.try(:strftime, "%H:%M") %></td>
+      <td><%= link_to t('common.edit'), edit_admin_ticket_path(ticket) if current_user.admin? %></td>
+      <td><%= link_to t('common.delete'), [:admin, ticket], method: :delete, data: { confirm: 'Вы действительно хотите удалить?' } %></td>
     </tr>
   <% end %>
   </tbody>

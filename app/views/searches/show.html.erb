@@ -1,18 +1,17 @@
-Поиск
-<%= link_to 'Новый поиск', new_search_path(@search) %> |
+<h1><%= t('.title') %></h1>
 
 <% if @search_rsr.empty? %>
-Поездов не найдено
+<%= t('.not_train') %>
 <% else %>
 <table>
   <thead>
   <tr>
-    <td width="100px">Маршрут</td>
-    <td>Станция отправления</td>
-    <td>Время отправления</td>
-    <td>Станция прибытия</td>
-    <td>Время прибытия</td>
-    <td>Купить билет</td>
+    <td width="200px"><%= t('.route') %></td>
+    <td><%= t('tickets.common.station_first') %></td>
+    <td><%= t('tickets.common.station_first_departure') %></td>
+    <td><%= t('tickets.common.station_last') %></td>
+    <td><%= t('tickets.common.station_last_arrival') %></td>
+    <td><%= t('.ticket_buy') %></td>
   </tr>
   </thead>
   <tbody>
@@ -20,16 +19,16 @@
     <tr>
       <td><%= search_rsr[:route].name %></td>
       <td><%= @station_first.title %></td>
-      <td><%= search_rsr[:firstrsr].departure %></td>
+      <td><%= search_rsr[:firstrsr].departure.try(:strftime, "%H:%M") %></td>
       <td><%= @station_last.title %></td>
-      <td><%= search_rsr[:lastrsr].arrival %></td>
+      <td><%= search_rsr[:lastrsr].arrival.try(:strftime, "%H:%M") %></td>
       <td>
       <%= form_tag new_ticket_path(@search), method: :get do %>
         <% rsr_first = search_rsr[:firstrsr].id %>
         <% rsr_last = search_rsr[:lastrsr].id %>
         <%= hidden_field_tag :ticket_rsr_first, rsr_first %>
         <%= hidden_field_tag :ticket_rsr_last, rsr_last %>
-        <%= submit_tag "Купить билет" %>
+        <%= submit_tag t('.ticket_buy') %>
       <% end %>
       </td>
     </tr>
@@ -37,3 +36,6 @@
   </tbody>
 </table>
 <% end %>
+
+<%= link_to t('.new_search'), new_search_path(@search) %> |
+<%= link_to t('common.back'), home_index_path %>
