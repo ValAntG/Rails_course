@@ -1,6 +1,8 @@
 <h1><%= t('.title') %></h1>
 
 <%= form_with(url: tickets_path(@ticket), model: @ticket, method: :post, local: true) do |form| %>
+  <%= render 'common/errors', resource: @ticket %>
+
   <%= form.label(:last_name) %>
   <%= form.text_field :last_name %>
   <%= form.label(:first_name) %>

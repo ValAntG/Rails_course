@@ -1,40 +1,40 @@
 <h1><%= t('.title') %></h1>
 
 <% if @search_rsr.empty? %>
-<%= t('.not_train') %>
+  <%= t('.not_train') %>
 <% else %>
-<table>
-  <thead>
-  <tr>
-    <td width="200px"><%= t('.route') %></td>
-    <td><%= t('tickets.common.station_first') %></td>
-    <td><%= t('tickets.common.station_first_departure') %></td>
-    <td><%= t('tickets.common.station_last') %></td>
-    <td><%= t('tickets.common.station_last_arrival') %></td>
-    <td><%= t('.ticket_buy') %></td>
-  </tr>
-  </thead>
-  <tbody>
-  <% @search_rsr.each do |search_rsr| %>
+  <table>
+    <thead>
     <tr>
-      <td><%= search_rsr[:route].name %></td>
-      <td><%= @station_first.title %></td>
-      <td><%= search_rsr[:firstrsr].departure.try(:strftime, "%H:%M") %></td>
-      <td><%= @station_last.title %></td>
-      <td><%= search_rsr[:lastrsr].arrival.try(:strftime, "%H:%M") %></td>
-      <td>
-      <%= form_tag new_ticket_path(@search), method: :get do %>
-        <% rsr_first = search_rsr[:firstrsr].id %>
-        <% rsr_last = search_rsr[:lastrsr].id %>
-        <%= hidden_field_tag :ticket_rsr_first, rsr_first %>
-        <%= hidden_field_tag :ticket_rsr_last, rsr_last %>
-        <%= submit_tag t('.ticket_buy') %>
-      <% end %>
-      </td>
+      <td width="200px"><%= t('.route') %></td>
+      <td><%= t('tickets.common.station_first') %></td>
+      <td><%= t('tickets.common.station_first_departure') %></td>
+      <td><%= t('tickets.common.station_last') %></td>
+      <td><%= t('tickets.common.station_last_arrival') %></td>
+      <td><%= t('.ticket_buy') %></td>
     </tr>
-  <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+    <% @search_rsr.each do |search_rsr| %>
+      <tr>
+        <td><%= search_rsr[:route].name %></td>
+        <td><%= @station_first.title %></td>
+        <td><%= search_rsr[:firstrsr].departure.try(:strftime, "%H:%M") %></td>
+        <td><%= @station_last.title %></td>
+        <td><%= search_rsr[:lastrsr].arrival.try(:strftime, "%H:%M") %></td>
+        <td>
+        <%= form_tag new_ticket_path(@search), method: :get do %>
+          <% rsr_first = search_rsr[:firstrsr].id %>
+          <% rsr_last = search_rsr[:lastrsr].id %>
+          <%= hidden_field_tag :ticket_rsr_first, rsr_first %>
+          <%= hidden_field_tag :ticket_rsr_last, rsr_last %>
+          <%= submit_tag t('.ticket_buy') %>
+        <% end %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
 <% end %>
 
 <%= link_to t('.new_search'), new_search_path(@search) %> |

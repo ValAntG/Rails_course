@@ -1,15 +1,5 @@
 <%= form_with(model: [:admin, @train, @carriage.becomes(Carriage)]) do |form| %>
-  <% if carriage.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(carriage.errors.count, "error") %> prohibited this carriage from being saved:</h2>
-
-      <ul>
-      <% carriage.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render 'common/errors', resource: @carriage %>
 
   <div class="field">
     <%= form.label :train, t('.number') %>
