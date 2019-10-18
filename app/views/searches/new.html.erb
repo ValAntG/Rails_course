@@ -1,4 +1,6 @@
-<h1><%= t('.title') %></h1>
+<h2><span class="label label-success"><%= t('.title') %></span></h2>
+
+
 <%= form_with(url: search_path, local: true,  method: :get) do |form| %>
   <div class="field">
     <%= form.label :station_first_id, t('tickets.common.station_first') %>

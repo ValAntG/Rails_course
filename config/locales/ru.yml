@@ -12,6 +12,8 @@ ru:
       update: 'Обновить данные'
   admin:
     carriages:
+      common:
+      
       form:
         number: 'Номер поезда'
         submit: "%{action} вагон"

@@ -1,4 +1,5 @@
-<h1><%= t('.title') %></h1>
+<h2><span class="label label-success"><%= t('.title') %></span></h2>
+
 <table>
   <thead>
   <tr>
@@ -11,8 +12,6 @@
     <td><%= t('tickets.common.station_first_departure') %></td>
     <td><%= t('tickets.common.station_last') %></td>
     <td><%= t('tickets.common.station_last_arrival') %></td>
-    <td><%= t('common.edit') if current_user.admin? %></td>
-    <td><%= t('common.delete') %></td>
   </tr>
   </thead>
   <tbody>
