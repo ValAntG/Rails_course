@@ -7,7 +7,7 @@
       <%= route_form.hidden_field :id %>
   </div>
 
-  <br>
+  <br/>
   <strong><%= t('.stations') %></strong>
   <div class="form-group form-group-sm">
     <table class="table">
@@ -49,7 +49,7 @@
   </div>
 <% end %>
 
-<br>
+<br/>
 <%= form_with(url: add_station_admin_route_path, method: :patch) do |route_form| %>
   <div class="field">
     <table class="table">
@@ -66,7 +66,7 @@
   </div>
 <% end %>
 
-<br>
+<br/>
 <%= form_with(url: del_station_admin_route_path, method: :patch) do |route_form| %>
   <div class="field">
     <table class="table">
@@ -82,7 +82,7 @@
   </div>
 <% end %>
 
-<br>
+<br/>
 <strong class="col-md-12 text-center" style="background-color: rgb(223, 240, 216); min-height:38px; padding-top:10px">
   <% if @route.train.nil? %>
     <%= t('.not_train') %>
@@ -92,7 +92,7 @@
   <% end %>
 </strong>
 
-<br>
+<br/>
 <%= form_with(url: add_train_admin_route_path, method: :patch) do |route_form| %>
   <div class="field">
     <table class="table">
