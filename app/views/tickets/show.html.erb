@@ -1,39 +1,111 @@
-<p><strong>Посадочный документ:</strong></p>
-
-<p>
-  <%= "Номер билета #{@ticket.id}" %>
-</p>
-
-<p>
-  <%= "Фамилия #{@ticket.last_name}" %>
-</p>
-
-<p>
-  <%= "Имя #{@ticket.first_name}" %>
-</p>
-
-<p>
-  <%= "Отчество #{@ticket.father_name}" %>
-</p>
-
-<p>
-  <%= "Документ серии #{@ticket.passport_series} № #{@ticket.passport_numbers}" %>
-</p>
-
-<p>
-  <%= "Номер поезда #{@ticket_info[:train]}" %>
-</p>
-
-<p>
-  <%= "Отправление со станции #{@ticket_info[:station_first]} в #{@ticket_info[:time_first]}" %>
-</p>
-
-<p>
-  <%= "Прибытие на станцию #{@ticket_info[:station_last]} в #{@ticket_info[:time_last]}" %>
-</p>
-
-<p>
-  <%= "Билет куплен #{@ticket[:created_at]}" %>
-</p>
+<h2><span class="label label-success"><%= t('.title') %></span></h2>
 
 
+<div class="row has-success">
+  <div class="row">
+    <div class="col-md-2">
+      <%= t('.number_ticket') %>
+    </div>
+    <div class="col-md-1">
+      <%= @ticket.id %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2">
+      <%= t('tickets.common.last_name') %>
+    </div>
+    <div class="col-md-2">
+      <%= @ticket.last_name %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2">
+      <%= t('tickets.common.first_name') %>
+    </div>
+    <div class="col-md-2">
+      <%= @ticket.first_name %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2">
+      <%= t('tickets.common.father_name') %>
+    </div>
+    <div class="col-md-2">
+      <%= @ticket.father_name %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4">
+
+    </div>
+    <div class="col-md-3">
+      <%= t('tickets.common.passport_series') %>
+    </div>
+    <div class="col-md-2">
+      <%= @ticket.passport_series %>
+    </div>
+    <div class="col-md-1">
+      <%= '№' %>
+    </div>
+    <div class="col-md-2">
+      <%= @ticket.passport_numbers %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2">
+      <%= t('.number_train') %>
+    </div>
+    <div class="col-md-2">
+      <%= @ticket_info[:train] %>
+    </div>
+    <div class="col-md-3">
+      <%= t('tickets.common.station_first') %>
+    </div>
+    <div class="col-md-2">
+      <%= @ticket_info[:station_first] %>
+    </div>
+    <div class="col-md-1">
+      <%= 'в' %>
+    </div>
+    <div class="col-md-1">
+      <%= @ticket_info[:time_first].try(:strftime, "%H:%M") %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4">
+
+    </div>
+    <div class="col-md-3">
+      <%= t('tickets.common.station_last') %>
+    </div>
+    <div class="col-md-2">
+      <%= @ticket_info[:station_last] %>
+    </div>
+    <div class="col-md-1">
+      <%= 'в' %>
+    </div>
+    <div class="col-md-1">
+      <%= @ticket_info[:time_last].try(:strftime, "%H:%M") %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2">
+
+    </div>
+    <div class="col-md-2">
+      <%= t('.date') %>
+    </div>
+    <div class="col-md-6">
+      <%= @ticket[:created_at] %>
+    </div>
+  </div>
+
+  <div class="col-md-12 text-central">
+    <img class="qr-code" src="<%= @qr %>"/>
+  </div>
+</div><!--/row-->

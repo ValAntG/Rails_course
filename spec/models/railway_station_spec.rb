@@ -2,15 +2,17 @@ require 'rails_helper'
 
 RSpec.describe RailwayStation, type: :model do
   describe 'validations' do
-    let!(:railway_station) { RailwayStation.create(title: 'Kiev')}
-    it 'should validate' do
+    let!(:railway_station) { described_class.create(title: 'Kiev') }
+
+    it 'validate' do
       expect(railway_station).to be_valid
     end
   end
 
   describe 'not validations' do
-    let!(:railway_station) { RailwayStation.create(title: '')}
-    it 'should validate' do
+    let!(:railway_station) { described_class.create(title: '') }
+
+    it 'validate' do
       expect(railway_station).not_to be_valid
     end
   end

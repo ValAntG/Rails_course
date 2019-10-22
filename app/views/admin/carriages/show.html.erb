@@ -1,47 +1,47 @@
 <p>
-  <strong>Номер поезда:</strong>
+  <strong><%= t('.number_train') %></strong>
   <%= @carriage.train.name %>
 </p>
 
 <p>
-  <strong>Тип вагона:</strong>
+  <strong><%= t('.type_carriage') %></strong>
   <%= {
-    'сидячий': 'ExpressCarriage',
-    'плацкартный': 'EconomCarriage',
-    'купейный': 'CoupeCarriage',
-    'люкс': 'VipCarriage'
+      "#{t('.express')}": 'ExpressCarriage',
+      "#{t('.econom')}": 'EconomCarriage',
+      "#{t('.coupe')}": 'CoupeCarriage',
+      "#{t('.vip')}": 'VipCarriage'
   }.key(@carriage.type) %>
 </p>
 
 <p>
-  <strong>Номер вагона в поезде:</strong>
+  <strong><%= t('.number_carriage') %></strong>
   <%= @carriage.number %>
 </p>
 
 <p>
-  <em>Количество нижних мест:</em>
+  <em><%= t('.place_top') %></em>
   <%= @carriage.place_botton ||= 0 %>
 </p>
 
 <p>
-  <em>Количество верхних мест:</em>
+  <em><%= t('.place_botton') %></em>
   <%= @carriage.place_top ||= 0 %>
 </p>
 
 <p>
-  <em>Количество нижних боковых мест:</em>
+  <em><%= t('.place_top_side') %></em>
   <%= @carriage.place_botton_side ||= 0 %>
 </p>
 
 <p>
-  <em>Количество верхних боковых мест:</em>
+  <em><%= t('.place_botton_side') %></em>
   <%= @carriage.place_top_side  ||= 0 %>
 </p>
 
 <p>
-  <em>Количество сидячих мест:</em>
+  <em><%= t('.seat') %></em>
   <%= @carriage.seat  ||= 0 %>
 </p>
 
-<%= link_to 'Редактировать вагон', edit_admin_carriage_path(@carriage) %> |
-<%= link_to 'Назад к информации о поезде', admin_train_path(@carriage.train) %>
+<%= link_to t('common.edit'), edit_admin_carriage_path(@carriage) %> |
+<%= link_to t('common.back_to_train'), admin_train_path(@carriage.train) %>

@@ -1,19 +1,19 @@
 <p>
-  <strong>Название:</strong>
+  <strong><%= t('.title') %></strong>
   <%= @route.name %>
 </p>
 
 <p>
-  <strong>Поезд на данном маршруте:</strong>
+  <strong><%= t('.train') %></strong>
   <%= @route.train.name if !@route.train.nil? %>
-  <%= "поезда нет" if @route.train.nil? %>
+  <%= t('.not_train') if @route.train.nil? %>
 </p>
 
 <p>
-  <strong>Станции которые входят в данный маршрут:</strong>
+  <strong><%= t('.station') %></strong>
   <%= @route.railway_stations.map(&:title) if @route.railway_stations.any? %>
-  <%= "станций нет" if !@route.railway_stations.any? %>
+  <%= t('.not_station') if !@route.railway_stations.any? %>
 </p>
 
-<%= link_to 'Редактировать', edit_admin_route_path(@route) %> |
-<%= link_to 'Назад', admin_routes_path %>
+<%= link_to t('common.edit'), edit_admin_route_path(@route) %> |
+<%= link_to t('common.back'), admin_routes_path %>

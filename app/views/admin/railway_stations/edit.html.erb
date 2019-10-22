@@ -1,6 +1,6 @@
-<h1>Изменить железнодорожную станцию</h1>
+<h2><span class="label label-success"><%= t('.title') %></span></h2>
 
 <%= render 'form', railway_station: @railway_station %>
 
-<%= link_to 'Посмотреть', [:admin, @railway_station] %> |
-<%= link_to 'Назад', admin_railway_stations_path %>
+<%= link_to t('common.info'), [:admin, @railway_station] %> |
+<%= link_to t('common.back'), admin_railway_stations_path %>

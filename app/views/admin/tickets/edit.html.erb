@@ -1,17 +1,34 @@
-<h1>Изменить билет</h1>
+<h2><span class="label label-success"><%= t('.title') %></span></h2>
 
-<%= form_with(model: [:admin, @ticket], local: true) do |form| %>
-  <%= form.label(:last_name, "Фамилия") %>
-  <%= form.text_field :last_name %>
-  <%= form.label(:first_name, "Имя") %>
-  <%= form.text_field :first_name %>
-  <%= form.label(:father_name, "Отчество") %>
-  <%= form.text_field :father_name %>
-  <%= form.label(:passport_series, "Серия паспорта") %>
-  <%= form.text_field :passport_series %>
-  <%= form.label(:passport_numbers, "Номер паспорта") %>
-  <%= form.text_field :passport_numbers %>
-  <%= hidden_field_tag :ticket_rsr_first, params[:ticket_rsr_first] %>
-  <%= hidden_field_tag :ticket_rsr_last, params[:ticket_rsr_last] %>
-  <%= form.submit 'Изменить' %>
-<% end %>
+
+<div class="row has-success">
+  <%= form_with(model: [:admin, @ticket], local: true) do |form| %>
+    <div class="col-md-4">
+      <%= form.label :last_name %>
+      <%= form.text_field :last_name, class: "form-control", placeholder: "Фамилия" %>
+    </div>
+    <div class="col-md-4">
+      <%= form.label :first_name %>
+      <%= form.text_field :first_name, class: "form-control", placeholder: "Имя" %>
+    </div>
+    <div class="col-md-4">
+      <%= form.label :father_name %>
+      <%= form.text_field :father_name, class: "form-control", placeholder: "Отчество" %>
+      <%= hidden_field_tag :ticket_rsr_first, params[:ticket_rsr_first] %>
+      <%= hidden_field_tag :ticket_rsr_last, params[:ticket_rsr_last] %>
+    </div>
+
+    <div class="col-md-4">
+      <%= form.label :passport_series %>
+      <%= form.text_field :passport_series, class: "form-control", placeholder: "Серия паспорта" %>
+    </div>
+    <div class="col-md-4">
+      <%= form.label :passport_numbers %>
+      <%= form.text_field :passport_numbers, class: "form-control", placeholder: "Номер паспорта" %>
+    </div>
+    <div class="col-md-4">
+      <br/>
+      <%= form.submit t('common.edit'), class: "btn btn-default btn-primary form-control" %>
+    </div>
+  <% end %>
+</div><!--/row-->

@@ -1,28 +1,17 @@
-<h1>Новый маршрут</h1>
+<h2><span class="label label-success"><%= t('.title') %></span></h2>
 
 <%= form_with(model: [:admin, @route], local: true) do |form| %>
-  <% if @route.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@route.errors.count, "error") %> prohibited this route from being saved:</h2>
+  <%= render 'common/errors', resource: @route %>
 
-      <ul>
-      <% @route.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :railway_stations, "Cтанции маршрута" %>
-    <%= form.select(:railway_stations_ids, RailwayStation.all.collect { |s| [ s.title, s.id ] },
-                                                                        { :prompt => "Выберите станции" },
-                                                                        { :multiple => true, :size => 5 }) %>
+  <div class="form-group">
+    <%= form.label :railway_stations %>
+    <%= form.select(:railway_stations_ids, RailwayStation.all.collect { |s| [ s.title, s.id ] }, { :prompt => false },
+                    { :multiple => true, :size => 7, class: "form-control"}) %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit t('common.submit.create'), class: "btn btn-primary form-control" %>
   </div>
 <% end %>
 
-<%= link_to 'Назад', admin_routes_path %>
+<%= link_to t('common.back'), admin_routes_path %>

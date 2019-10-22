@@ -1,10 +1,10 @@
 class RailwayStationsRoute < ApplicationRecord
-  validates :railway_station_id, uniqueness: {scope: :route_id}
+  validates :railway_station_id, uniqueness: { scope: :route_id }
 
   belongs_to :railway_station
   belongs_to :route
 
-  has_many :tickets
+  has_many :tickets, dependent: :destroy
 
   after_create :set_name
 
