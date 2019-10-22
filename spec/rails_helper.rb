@@ -36,15 +36,15 @@ RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
   [:controller, :view, :request].each do |type|
-    config.include ::Rails::Controller::Testing::TestProcess, :type => type
-    config.include ::Rails::Controller::Testing::TemplateAssertions, :type => type
-    config.include ::Rails::Controller::Testing::Integration, :type => type
+    config.include ::Rails::Controller::Testing::TestProcess, type: type
+    config.include ::Rails::Controller::Testing::TemplateAssertions, type: type
+    config.include ::Rails::Controller::Testing::Integration, type: type
   end
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
   config.use_transactional_fixtures = true
-  config.include Devise::Test::ControllerHelpers, :type => :controller
+  config.include Devise::Test::ControllerHelpers, type: :controller
 
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and

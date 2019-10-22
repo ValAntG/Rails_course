@@ -1,5 +1,6 @@
 class Admin::TicketsController < TicketsController
   include CheckAdmin
+  before_action :set_ticket, only: [:show, :edit, :update, :destroy]
 
   def update
     respond_to do |format|

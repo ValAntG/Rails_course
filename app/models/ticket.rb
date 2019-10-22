@@ -6,6 +6,6 @@ class Ticket < ApplicationRecord
   validates_with TicketByTrainValidator
 
   belongs_to :user
-  belongs_to :rsr_first, class_name: 'RailwayStationsRoute', foreign_key: :rsr_first_id
-  belongs_to :rsr_last, class_name: 'RailwayStationsRoute', foreign_key: :rsr_last_id
+  belongs_to :rsr_first, class_name: 'RailwayStationsRoute', foreign_key: :rsr_first_id, inverse_of: :tickets
+  belongs_to :rsr_last, class_name: 'RailwayStationsRoute', foreign_key: :rsr_last_id, inverse_of: :tickets
 end

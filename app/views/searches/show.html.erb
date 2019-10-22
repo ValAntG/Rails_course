@@ -6,7 +6,7 @@
   <table>
     <thead>
     <tr>
-      <td width="200px"><%= t('.route') %></td>
+      <td><%= t('.route') %></td>
       <td><%= t('tickets.common.station_first') %></td>
       <td><%= t('tickets.common.station_first_departure') %></td>
       <td><%= t('tickets.common.station_last') %></td>
@@ -37,5 +37,5 @@
   </table>
 <% end %>
 
-<%= link_to t('.new_search'), new_search_path(@search) %> |
-<%= link_to t('common.back'), home_index_path %>
+
+<p class="navbar-text navbar-right"><a href="#" class="navbar-link"><%= link_to t('.new_search'), new_search_path(@search) %></a></p>

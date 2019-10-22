@@ -3,15 +3,14 @@
 <%= form_with(model: [:admin, @route], local: true) do |form| %>
   <%= render 'common/errors', resource: @route %>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :railway_stations %>
-    <%= form.select(:railway_stations_ids, RailwayStation.all.collect { |s| [ s.title, s.id ] },
-                                                                      { :prompt => false },
-                                                                      { :multiple => true, :size => 5 }) %>
+    <%= form.select(:railway_stations_ids, RailwayStation.all.collect { |s| [ s.title, s.id ] }, { :prompt => false },
+                    { :multiple => true, :size => 7, class: "form-control"}) %>
   </div>
 
   <div class="actions">
-    <%= form.submit t('common.submit.create') %>
+    <%= form.submit t('common.submit.create'), class: "btn btn-primary form-control" %>
   </div>
 <% end %>
 

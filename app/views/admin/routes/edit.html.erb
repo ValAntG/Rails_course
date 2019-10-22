@@ -1,94 +1,111 @@
 <h2><span class="label label-success"><%= t('.title') %></span></h2>
 
 <%= form_with model: [:admin, @route] do |route_form| %>
-  <p>
-    <strong>
-      <%= t('.name_route') %>
-      <%= route_form.text_field :name %>
+  <div class="form-group">
+      <strong><%= t('.name_route') %></strong>
+      <%= route_form.text_field :name, class: "form-control" %>
       <%= route_form.hidden_field :id %>
-    </strong>
-  </p>
+  </div>
 
   <br>
-  <p><strong><%= t('.stations') %></strong></p>
-  <table>
-    <thead>
-      <tr>
-        <td width="100px"><%= t('.name_station') %></td>
-        <td><%= t('.position') %></td>
-        <td><%= t('.arrival') %></td>
-        <td><%= t('.departure') %></td>
-      </tr>
-    </thead>
-
-    <tbody>
-    <% @route.railway_stations_routes.each do |rsr| %>
-      <%= route_form.fields_for rsr, index: rsr.id do |rsr_form| %>
-        <tr>
-          <% station = rsr.railway_station %>
-          <td><%= station.title %></td>
-          <td><%= rsr_form.number_field(:position, options = {in: 0..@route.railway_stations_routes.size}) %></td>
-          <td><%= rsr_form.time_field(:arrival, value: rsr.departure.try(:strftime, "%H:%M")) %></td>
-          <td><%= rsr_form.time_field(:departure, value: rsr.departure.try(:strftime, "%H:%M")) %></td>
+  <strong><%= t('.stations') %></strong>
+  <div class="form-group form-group-sm">
+    <table class="table">
+      <thead>
+        <tr class="success">
+          <td class="col-md-4 text-center"><%= t('.name_station') %></td>
+          <td class="col-md-2 text-center"><%= t('.position') %></td>
+          <td class="col-md-3 text-center"><%= t('.arrival') %></td>
+          <td class="col-md-3 text-center"><%= t('.departure') %></td>
         </tr>
-      <% end %>
-    <% end %>
-    </tbody>
-  </table>
+      </thead>
 
-  <br>
-  <p>
-    <div class="actions">
-      <%= route_form.submit t('common.submit.update') %>
-    </div>
-  </p>
+      <tbody>
+      <% @route.railway_stations_routes.each do |rsr| %>
+        <%= route_form.fields_for rsr, index: rsr.id do |rsr_form| %>
+          <tr>
+            <% station = rsr.railway_station %>
+            <td class="col-md-4 text-center"><%= station.title %></td>
+            <td class="col-md-2">
+              <%= rsr_form.number_field(:position, options = {in: 0..@route.railway_stations_routes.size,
+                                        class: "form form-control text-center"}) %>
+            </td>
+            <td class="col-md-3">
+              <%= rsr_form.time_field(:arrival, value: rsr.departure.try(:strftime, "%H:%M"),
+                                        class: "form form-control text-center") %>
+            </td>
+            <td class="col-md-3">
+              <%= rsr_form.time_field(:departure, value: rsr.departure.try(:strftime, "%H:%M"),
+                                        class: "form form-control text-center") %>
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="actions">
+    <%= route_form.submit t('common.submit.update'), class: "btn btn-primary form-control" %>
+  </div>
 <% end %>
 
-
 <br>
-<p>
 <%= form_with(url: add_station_admin_route_path, method: :patch) do |route_form| %>
   <div class="field">
-    <strong><%= t('.add_station') %></strong>
-    <%= route_form.select(:add_station_id,
-                          (RailwayStation.all-@route.railway_stations).collect { |s| [ s.title, s.id ] },
-                          { include_blank: true }, :style => "width:150px") %>
-    <%= route_form.submit t('.submit.add') %>
+    <table class="table">
+        <tr>
+          <td class="col-md-4 text-center"><strong><%= t('.add_station') %></strong></td>
+          <td class="col-md-4"><%= route_form.select(:add_station_id,
+                                (RailwayStation.all-@route.railway_stations).collect { |s| [ s.title, s.id ] },
+                                { include_blank: true}, class: "form form-control") %></td>
+          <td class="col-md-4 text-center">
+            <%= route_form.submit t('.submit.add'), class: "btn btn-primary form-control" %>
+          </td>
+      </tr>
+    </table>
   </div>
 <% end %>
-</p>
 
 <br>
-<p>
 <%= form_with(url: del_station_admin_route_path, method: :patch) do |route_form| %>
   <div class="field">
-    <strong><%= t('.del_station') %></strong>
-    <%= route_form.select(:del_station_id, @route.railway_stations.collect { |s| [ s.title, s.id ] },
-                          { include_blank: true }, :style => "width:150px") %>
-    <%= route_form.submit t('.submit.delete') %>
+    <table class="table">
+        <tr>
+          <td class="col-md-4 text-center"><strong><%= t('.del_station') %></strong></td>
+          <td class="col-md-4"><%= route_form.select(:del_station_id, @route.railway_stations.collect { |s| [ s.title, s.id ] },
+                          { include_blank: true }, class: "form form-control") %></td>
+          <td class="col-md-4 text-center">
+            <%= route_form.submit t('.submit.delete'), class: "btn btn-primary form-control" %>
+          </td>
+      </tr>
+    </table>
   </div>
 <% end %>
-</p>
 
 <br>
-<p>
+<strong class="col-md-12 text-center" style="background-color: rgb(223, 240, 216); min-height:38px; padding-top:10px">
+  <% if @route.train.nil? %>
+    <%= t('.not_train') %>
+  <% else %>
+    <%= t('.train_in') %>
+    <%= @route.train.name %>
+  <% end %>
+</strong>
+
+<br>
 <%= form_with(url: add_train_admin_route_path, method: :patch) do |route_form| %>
   <div class="field">
-    <p>
-      <% if @route.train.nil? %>
-        <%= t('.not_train') %>
-      <% else %>
-        <%= t('.train_in') %>
-        <%= @route.train.name %>
-      <% end %>
-    </p>
-    <strong><%= t('.add_train') %></strong>
-    <%= route_form.select(:add_train_id,
-                          Train.all.collect { |t| [ t.name, t.id ] },
-                          { include_blank: true }, :style => "width:150px") %>
-    <%= route_form.submit t('.submit.train') %>
+    <table class="table">
+        <tr>
+          <td class="col-md-4 text-center"><strong><%= t('.add_train') %></strong></td>
+          <td class="col-md-4"><%= route_form.select(:add_train_id, Train.all.collect { |t| [ t.name, t.id ] },
+                                                     { include_blank: true }, class: "form form-control") %></td>
+          <td class="col-md-4 text-center">
+            <%= route_form.submit t('.submit.train'), class: "btn btn-primary form-control" %>
+          </td>
+      </tr>
+    </table>
   </div>
 <% end %>
-</p>
 
 <%= link_to t('common.back'), admin_routes_path %>
