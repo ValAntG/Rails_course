@@ -1,14 +1,48 @@
 ru:
   common:
     back: 'Назад'
+    back_to_train: 'Назад к информации о поезде'
     edit: 'Редактировать'
     info: 'Посмотреть'
     delete: 'Удалить'
     empty: 'пусто'
+    errors: 'При заполнении формы возникли ошибки'
+    submit:
+      create: 'Создать'
+      update: 'Обновить данные'
   admin:
+    carriages:
+      common:
+      
+      form:
+        number: 'Номер поезда'
+        submit: "%{action} вагон"
+        express: 'сидячий вагон'
+        econom: 'плацкартный вагон'
+        coupe: 'купейный вагон'
+        vip: 'люкс вагон'
+      edit:
+        title: 'Изменить вагон'
+      new:
+        title: 'Новый вагон'
+      index:
+        title: 'Вагоны'
+        create: 'Создать новый вагон'
+      show:
+        number_train: 'Номер поезда:'
+        type_carriage: 'Тип вагона:'
+        number_carriage: 'Номер вагона в поезде:'
+        place_top: 'Количество нижних мест:'
+        place_botton: 'Количество верхних мест:'
+        place_top_side: 'Количество нижних боковых мест:'
+        place_botton_side: 'Количество верхних боковых мест:'
+        seat: 'Количество сидячих мест:'
+        express: 'сидячий вагон'
+        econom: 'плацкартный вагон'
+        coupe: 'купейный вагон'
+        vip: 'люкс вагон'
     railway_stations:
       form:
-        name: 'Имя станции'
         submit: "%{action} станцию"
       edit:
         title: 'Изменить железнодорожную станцию'
@@ -24,28 +58,68 @@ ru:
         not_train: 'отсутствуют'
         not_route: 'маршруты не найдены'
     routes:
-      # form:
-      #   name: 'Имя станции'
-      #   submit: "%{action} станцию"
       edit:
         title: 'Изменить маршрут'
+        name_route: 'Название маршрута'
         stations: 'Станции в маршруте'
-        name: 'Имя станции'
+        name_station: 'Имя станции'
         position: 'Позиция'
         arrival: 'Прибытие'
         departure: 'Отправление'
+        add_station: 'Выберите станцию которую хотите добавить в маршрут'
+        del_station: 'Выберите станцию которую хотите удалить из маршрут'
+        add_train: 'Выберите поезд который хотите добавить на маршрут'
+        not_train: 'На маршруте нет поездов'
+        train_in: 'На маршруте находится поезд №'
         submit:
-          edit: 'Сохранить изменения'
-          destroy: 'Добавить станцию'
+          add: 'Добавить станцию'
+          delete: 'Удалить станцию'
+          train: 'Добавить поезд'
       index:
         title: 'Маршруты'
         create: 'Создать маршрут'
       new:
         title: 'Новый маршрут'
-        submit: "Создать маршрут"
       show:
         title: 'Информация по маршруту:'
         train: 'Поезд на данном маршруте:'
         station: 'Станции входящие в данный маршрут:'
         not_train: 'отсутствуют'
         not_station: 'станции не найдены'
+    tickets:
+      edit:
+        title: 'Изменить билет'
+  searches:
+    new:
+      title: 'Новый поиск'
+      search: 'Поиск'
+    show:
+      title: 'Найдены билеты:'
+      not_train: 'Поезда не найдены'
+      route: 'Маршрут'
+      ticket_buy: 'Купить билет'
+      new_search: 'Новый поиск'
+  tickets:
+    common:
+      user: 'Пользователь'
+      last_name: 'Фамилия'
+      first_name: 'Имя'
+      father_name: 'Отчество'
+      passport_series: 'Серия паспорта'
+      passport_numbers: 'Номер паспорта'
+      station_first: 'Станция отправления'
+      station_first_departure: 'Время отправления'
+      station_last: 'Станция прибытия'
+      station_last_arrival: 'Время прибытия'
+    new:
+      title: 'Купить билет'
+      buy: 'Купить'
+    show:
+      title: 'Посадочный документ:'
+      number_ticket: 'Номер билета'
+      number_train: 'Номер поезда'
+      date: 'Билет куплен'
+    index:
+      title: 'Билеты'
+      ticket: 'Билет'
+      create: 'Создать маршрут'

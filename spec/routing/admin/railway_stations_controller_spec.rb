@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe Admin::RailwayStationsController, type: :routing do
   describe 'routing' do
-
     it 'routes to #index' do
       expect(get: '/admin/railway_stations').to route_to('admin/railway_stations#index')
     end

@@ -1,16 +1,28 @@
-<h1>Новый поиск</h1>
+<h2><span class="label label-success"><%= t('.title') %></span></h2>
+
+
 <%= form_with(url: search_path, local: true,  method: :get) do |form| %>
-  <div class="field">
-    <%= form.label :station_first_id, "Cтанция отправления" %>
-    <%= form.select(:station_first_id, @stations.map { |s| [ s.title, s.id ] } ) %>
-  </div>
+  <form class="form-horizontal">
+    <div class="form-group">
+      <label class="col-xs-6 col-md-4 control-label">
+        <%= form.label :station_first_id, t('tickets.common.station_first') %>
+      </label>
+      <div class="col-xs-12 col-sm-6 col-md-8">
+        <%= form.select(:station_first_id, @stations.map { |s| [ s.title, s.id ] } ) %>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= form.label :station_last_id, "Cтанция прибытия" %>
-    <%= form.select(:station_last_id, @stations.map { |s| [ s.title, s.id ] } ) %>
-  </div>
+    <div class="form-group">
+      <label class="col-xs-6 col-md-4 control-label">
+        <%= form.label :station_last_id, t('tickets.common.station_last') %>
+      </label>
+      <div class="col-xs-12 col-sm-6 col-md-8">
+        <%= form.select(:station_last_id, @stations.map { |s| [ s.title, s.id ] } ) %>
+      </div>
+    </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+    <div class="form-group">
+      <%= form.submit t('.search'), class: "btn btn-info btn-block"%>
+    </div>
+  </form>
 <% end %>

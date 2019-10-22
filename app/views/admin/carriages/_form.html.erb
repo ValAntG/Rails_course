@@ -1,59 +1,48 @@
-<%= form_with(model: [@train, @carriage.becomes(Carriage)], url: admin_carriage_path) do |form| %>
-  <% if carriage.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(carriage.errors.count, "error") %> prohibited this carriage from being saved:</h2>
-
-      <ul>
-      <% carriage.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= form_with(model: [:admin, @train, @carriage.becomes(Carriage)]) do |form| %>
+  <%= render 'common/errors', resource: @carriage %>
 
   <div class="field">
-    <%= form.label :train, "Номер поезда" %>
+    <%= form.label :train, t('.number') %>
     <%= form.collection_select :train_id, Train.all, :id, :name %>
   </div>
 
-
   <div class="field">
-    <%= form.label :type, "Тип вагона" %>
+    <%= form.label :type %>
     <% select_list = {
-      'сидячий вагон': 'ExpressCarriage',
-      'плацкартный вагон': 'EconomCarriage',
-      'купейный вагон': 'CoupeCarriage',
-      'люкс вагон': 'VipCarriage'
+      "#{t('.express')}": 'ExpressCarriage',
+      "#{t('.econom')}": 'EconomCarriage',
+      "#{t('.coupe')}": 'CoupeCarriage',
+      "#{t('.vip')}": 'VipCarriage'
     } %>
     <%= form.select :type, select_list %>
   </div>
 
   <div class="field">
-    <%= form.label :place_botton, "Количество нижних мест" %>
+    <%= form.label :place_botton %>
     <%= form.text_field :place_botton %>
   </div>
 
   <div class="field">
-    <%= form.label :place_top, "Количество верхних мест" %>
+    <%= form.label :place_top %>
     <%= form.text_field :place_top %>
   </div>
 
   <div class="field">
-    <%= form.label :place_botton_side, "Количество нижних боковых мест" %>
+    <%= form.label :place_botton_side%>
     <%= form.text_field :place_botton_side %>
   </div>
 
   <div class="field">
-    <%= form.label :place_top_side, "Количество верхних боковых мест" %>
+    <%= form.label :place_top_side %>
     <%= form.text_field :place_top_side %>
   </div>
 
   <div class="field">
-    <%= form.label :seat, "Количество сидячих мест" %>
+    <%= form.label :seat %>
     <%= form.text_field :seat %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit t('.submit', action: @carriage.new_record? ? 'Создать' : 'Редактировать') %>
   </div>
 <% end %>

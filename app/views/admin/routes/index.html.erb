@@ -1,7 +1,7 @@
-<h1><%= t('.title') %></h1>
+<h2><span class="label label-success"><%= t('.title') %></span></h2>
 
 <%= render partial: "route", collection: @routes %>
 
-<br>
+<br/>
 
 <%= link_to t('.create'), new_admin_route_path %>

@@ -3,5 +3,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :confirmable
   validates :name, presence: true
 
-  has_many :tickets
+  has_many :tickets, dependent: :destroy
 end

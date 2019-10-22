@@ -1,13 +1,9 @@
 <header>
-<h1>Кабинет администратора</h1>
-  <p><strong>Списки</strong></p>
-  <p>
-    <%= link_to 'МАРШРУТЫ', admin_routes_path %> -
-    <%= link_to 'ЖЕЛЕЗНОДОРОЖНЫЕ СТАНЦИИ', admin_railway_stations_path %> -
-    <%= link_to 'ПОЕЗДА', admin_trains_path %> -
-    <%= link_to 'БИЛЕТЫ', admin_tickets_path %> -
-    <%= link_to 'ПОИСК БИЛЕТА', new_search_path %>
-  </p>
-</br>
-
+  <li class="nav-header">администратора</li>
+  <br/>
+  <li><%= link_to 'МАРШРУТЫ', admin_routes_path %></li>
+  <li><%= link_to 'ЖЕЛЕЗНОДОРОЖНЫЕ СТАНЦИИ', admin_railway_stations_path %></li>
+  <li><%= link_to 'ПОЕЗДА', admin_trains_path %></li>
+  <li><%= link_to 'БИЛЕТЫ', admin_tickets_path %></li>
+  <li><%= link_to 'ПОИСК БИЛЕТА', new_search_path %></li>
 </header>
