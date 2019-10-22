@@ -9,7 +9,9 @@ class TicketsController < ApplicationController
   end
 
   def show
-    ticket_info
+    info = ticket_info
+    @qr = QrCodeService.generate_qr(info, @ticket)
+    info
   end
 
   def new
