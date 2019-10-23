@@ -6,11 +6,11 @@
 
     <div class="col-md-4">
       <%= form.label :last_name %>
-      <%= form.text_field :last_name, class: "form-control", placeholder: "Фамилия" %>
+      <%= form.text_field :last_name, value: "#{current_user.name}", class: "form-control", placeholder: "Фамилия" %>
     </div>
     <div class="col-md-4">
       <%= form.label :first_name %>
-      <%= form.text_field :first_name, class: "form-control", placeholder: "Имя" %>
+      <%= form.text_field :first_name, value: "#{current_user.surname}", class: "form-control", placeholder: "Имя" %>
     </div>
     <div class="col-md-4">
       <%= form.label :father_name %>
