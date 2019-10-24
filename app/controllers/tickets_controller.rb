@@ -30,6 +30,7 @@ class TicketsController < ApplicationController
         format.html { render :new }
       end
     end
+    SendService.send_notification(current_user, @ticket)
   end
 
   def destroy
@@ -37,6 +38,7 @@ class TicketsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to tickets_url, notice: 'ticket was successfully destroyed.' }
     end
+    SendService.send_destroy_ticket(current_user, @ticket)
   end
 
   protected
