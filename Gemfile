@@ -43,15 +43,16 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'nokogiri', '>= 1.10.4'
 gem 'rails_12factor'
 gem 'figaro'
+gem 'barby', '~> 0.6.2'
+gem 'chunky_png', '~> 1.3.0'
+gem 'rqrcode', '~> 0.4.2'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'barby', '~> 0.6.2'
+
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'chunky_png', '~> 1.3.0'
   gem 'pry-rails'
   gem 'rails-controller-testing'
-  gem 'rqrcode', '~> 0.4.2'
   gem 'rspec-rails'
   gem 'rubocop-rails'
   gem 'rubocop-rspec'
