@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_03_151007) do
+ActiveRecord::Schema.define(version: 2019_10_22_160407) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "carriages", force: :cascade do |t|
     t.integer "number"
@@ -23,6 +26,8 @@ ActiveRecord::Schema.define(version: 2019_10_03_151007) do
     t.string "type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["id", "type"], name: "index_carriages_on_id_and_type"
+    t.index ["train_id"], name: "index_carriages_on_train_id"
   end
 
   create_table "railway_stations", force: :cascade do |t|
@@ -39,6 +44,8 @@ ActiveRecord::Schema.define(version: 2019_10_03_151007) do
     t.time "departure"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["railway_station_id"], name: "index_railway_stations_routes_on_railway_station_id"
+    t.index ["route_id"], name: "index_railway_stations_routes_on_route_id"
   end
 
   create_table "routes", force: :cascade do |t|
@@ -55,9 +62,11 @@ ActiveRecord::Schema.define(version: 2019_10_03_151007) do
     t.integer "passport_numbers"
     t.integer "rsr_first_id"
     t.integer "rsr_last_id"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["rsr_first_id"], name: "index_tickets_on_rsr_first_id"
+    t.index ["rsr_last_id"], name: "index_tickets_on_rsr_last_id"
     t.index ["user_id"], name: "index_tickets_on_user_id"
   end
 
@@ -65,8 +74,8 @@ ActiveRecord::Schema.define(version: 2019_10_03_151007) do
     t.integer "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "current_station_id"
-    t.integer "route_id"
+    t.bigint "current_station_id"
+    t.bigint "route_id"
     t.boolean "sortcar", default: true
     t.index ["current_station_id"], name: "index_trains_on_current_station_id"
     t.index ["route_id"], name: "index_trains_on_route_id"
