@@ -1,6 +1,9 @@
 <p>
-  <strong><%= t('.title') %></strong>
-  <%= @railway_station.title %>
+  <div class = 'edit_form_del', style = "display: block">
+    <strong><%= t('.title') %></strong>
+    <%= @railway_station.title %>
+  </div>
+  <%= render 'form', railway_station: @railway_station, hidden: true %>
 </p>
 
 <p>
@@ -15,5 +18,5 @@
   <%= t('.not_route') if !@railway_station.routes.any? %>
 </p>
 
-<%= link_to t('common.edit'), edit_admin_railway_station_path(@railway_station) %> |
+<%= link_to t('common.edit'), '', class: "edit_button" %>
 <%= link_to t('common.back'), admin_railway_stations_path %>

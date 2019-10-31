@@ -19,28 +19,28 @@
 </p>
 
 <p>
-  <em><%= t('.place_top') %></em>
-  <%= @carriage.place_botton ||= 0 %>
+  <em><%= t('.place_top') if ["EconomCarriage", "CoupeCarriage"].include?(@carriage.type) %></em>
+  <%= @carriage.place_botton ||= 0 if ["EconomCarriage", "CoupeCarriage"].include?(@carriage.type) %>
 </p>
 
 <p>
-  <em><%= t('.place_botton') %></em>
-  <%= @carriage.place_top ||= 0 %>
+  <em><%= t('.place_botton') if ['EconomCarriage', 'CoupeCarriage', 'VipCarriage'].include?(@carriage.type) %></em>
+  <%= @carriage.place_top ||= 0 if ['EconomCarriage', 'CoupeCarriage', 'VipCarriage'].include?(@carriage.type) %>
 </p>
 
 <p>
-  <em><%= t('.place_top_side') %></em>
-  <%= @carriage.place_botton_side ||= 0 %>
+  <em><%= t('.place_top_side') if ['EconomCarriage'].include?(@carriage.type) %></em>
+  <%= @carriage.place_botton_side ||= 0 if ['EconomCarriage'].include?(@carriage.type) %>
 </p>
 
 <p>
-  <em><%= t('.place_botton_side') %></em>
-  <%= @carriage.place_top_side  ||= 0 %>
+  <em><%= t('.place_botton_side') if ['EconomCarriage'].include?(@carriage.type) %></em>
+  <%= @carriage.place_top_side  ||= 0 if ['EconomCarriage'].include?(@carriage.type) %>
 </p>
 
 <p>
-  <em><%= t('.seat') %></em>
-  <%= @carriage.seat  ||= 0 %>
+  <em><%= t('.seat') if ['ExpressCarriage'].include?(@carriage.type) %></em>
+  <%= @carriage.seat  ||= 0 if ['ExpressCarriage'].include?(@carriage.type) %>
 </p>
 
 <%= link_to t('common.edit'), edit_admin_carriage_path(@carriage) %> |

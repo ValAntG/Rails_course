@@ -20,7 +20,7 @@ module Admin
     def create
       @carriage = @train.carriages.new(carriage_params)
       if @carriage.save
-        redirect_to train_carriages_path, notice: 'Carriage was successfully created.'
+        redirect_to [:admin, @carriage.becomes(Carriage)], notice: 'Carriage was successfully created.'
       else
         render :new
       end
@@ -50,8 +50,8 @@ module Admin
     end
 
     def carriage_params
-      params.require(:carriage)
-            .permit(:train_id, :type, :place_botton, :place_top, :place_botton_side, :place_top_side, :seat)
+      CarriageNilPlace.nil_place(params.require(:carriage)
+            .permit(:train_id, :type, :place_botton, :place_top, :place_botton_side, :place_top_side, :seat))
     end
   end
 end
