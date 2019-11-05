@@ -5,14 +5,14 @@
       <tbody>
         <tr>
           <td class="col-md-3 text-center">
-            <div class = 'edit_form_del', style = "display: block">
+            <div class = 'edit_form_del visibility'>
               <%= form.label train.name, class: 'form form-control text-center' %>
             </div>
             <%= form_with(model: [:admin, train], local: true) do |form| %>
-              <div class="edit_form_add", style = "display: none">
+              <div class="edit_form_add invisibility">
                 <%= form.number_field :name, class: 'form form-control text-center' %>
               </div>
-              <div class="edit_form_add", style = "display: none">
+              <div class="edit_form_add invisibility">
                 <%= form.submit 'Сохранить', class: 'form form-control text-center btn btn-success' %>
               </div>
             <% end %>
@@ -37,11 +37,11 @@
           </td>
 
           <td class="col-md-1 text-center">
-            <div class = 'edit_form_del' style = "display: block">
-              <%=  link_to 'Изменить', '', class: "edit_button form form-control text-center btn btn-success" %>
+            <div class = 'edit_form_del visibility'>
+              <%=  link_to t('common.change'), '', class: "edit_button_first form form-control text-center btn btn-success" %>
             </div>
-            <div class="edit_form_add" style = "display: none">
-              <%=  link_to 'Отменить', '', class: "edit_button form form-control text-center btn btn-warning" %>
+            <div class="edit_form_add invisibility">
+              <%=  link_to t('common.cancel'), '', class: "edit_button_second form form-control text-center btn btn-warning" %>
             </div>
           </td>
 
