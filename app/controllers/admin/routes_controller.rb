@@ -29,7 +29,7 @@ module Admin
     def update
       timetable_params
       if route_update
-        redirect_to [:admin, @route], notice: 'Route was successfully updated.'
+        redirect_to admin_routes_url, notice: 'Route was successfully updated.'
       else
         render :edit
       end
@@ -86,8 +86,10 @@ module Admin
 
     def route_update
       @route.update(name: timetable_params[:name])
-      timetable_params[:railway_stations_route].each do |rsr|
-        RailwayStationsRoute.find(rsr[0]).update(rsr[1])
+      unless timetable_params[:railway_stations_route].nil?
+        timetable_params[:railway_stations_route].each do |rsr|
+          RailwayStationsRoute.find(rsr[0]).update(rsr[1])
+        end
       end
     end
   end

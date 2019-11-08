@@ -1,5 +1,33 @@
-<p>
-  <%= link_to route.name, [:admin, route] %> -
-  <%= link_to t('common.edit'), edit_admin_route_path(route) %> -
-  <%= link_to t('common.delete'), [:admin, route], method: :delete, data: { confirm: 'Вы действительно хотите удалить?' } %>
-</p>
+<div>
+  <div class = 'col-md-6'>
+    <div class = 'edit_form_del visibility'>
+      <%= link_to route.name, [:admin, route], class: 'form form-control text-center' %>
+    </div>
+
+    <%= form_with(model: [:admin, route], local: true) do |form| %>
+      <div class="edit_form_add invisibility col-md-8">
+        <%= form.text_field :name, class: 'form form-control text-center' %>
+      </div>
+      <div class="edit_form_add invisibility col-md-4">
+        <%= form.submit 'Сохранить', class: 'form form-control text-center btn btn-success' %>
+      </div>
+    <% end %>
+
+  </div>
+
+  <div class = 'col-md-2 edit_form_del visibility'>
+    <%= link_to t('common.change'), '', class: 'edit_button_first form form-control text-center btn btn-success' %>
+  </div>
+  <div class = 'col-md-2 edit_form_add invisibility'>
+    <%= link_to t('common.cancel'), '', class: 'edit_button_second form form-control text-center btn btn-success' %>
+  </div>
+
+  <div class = 'col-md-2'>
+    <%= link_to t('common.edit'), edit_admin_route_path(route), class: 'form form-control text-center' %>
+  </div>
+
+  <div class = 'col-md-2'>
+    <%= link_to t('common.delete'), [:admin, route], method: :delete,
+      data: { confirm: 'Вы действительно хотите удалить?' }, class: 'form form-control text-center' %>
+  </div>
+</div>

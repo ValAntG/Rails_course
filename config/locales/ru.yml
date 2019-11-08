@@ -2,6 +2,8 @@ ru:
   common:
     back: 'Назад'
     back_to_train: 'Назад к информации о поезде'
+    change: 'Изменить'
+    cancel: 'Отмена'
     edit: 'Редактировать'
     info: 'Посмотреть'
     delete: 'Удалить'
@@ -13,7 +15,7 @@ ru:
   admin:
     carriages:
       common:
-      
+
       form:
         number: 'Номер поезда'
         submit: "%{action} вагон"

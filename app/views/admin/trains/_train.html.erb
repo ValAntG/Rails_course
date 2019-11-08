@@ -1,5 +1,66 @@
-<p>
-  <%= link_to "Поезд № #{train.name}", [:admin, train] %> -
-  <%= link_to 'Редактировать', edit_admin_train_path(train) %> -
-  <%= link_to 'Удалить', [:admin, train], method: :delete, data: { confirm: 'Вы действительно хотите удалить?' } %>
-</p>
+<%= form_with(model: [:admin, train], local: true)  do |form| %>
+  <%= render 'common/errors', resource: train %>
+  <div class="form-group form-group-sm">
+    <table class="table">
+      <tbody>
+        <tr>
+          <td class="col-md-3 text-center">
+            <div class = 'edit_form_del visibility'>
+              <%= form.label train.name, class: 'form form-control text-center' %>
+            </div>
+            <%= form_with(model: [:admin, train], local: true) do |form| %>
+              <div class="edit_form_add invisibility">
+                <%= form.number_field :name, class: 'form form-control text-center' %>
+              </div>
+              <div class="edit_form_add invisibility">
+                <%= form.submit 'Сохранить', class: 'form form-control text-center btn btn-success' %>
+              </div>
+            <% end %>
+          </td>
+
+          <td class="col-md-2 text-center">
+            <div>
+              <%= train.current_station.title %>
+            </div>
+          </td>
+
+          <td class="col-md-2 text-center">
+            <div>
+              <%= train.route.name %>
+            </div>
+          </td>
+
+          <td class="col-md-2 text-center">
+            <div>
+              <%= train.sortcar %>
+            </div>
+          </td>
+
+          <td class="col-md-1 text-center">
+            <div class = 'edit_form_del visibility'>
+              <%=  link_to t('common.change'), '', class: "edit_button_first form form-control text-center btn btn-success" %>
+            </div>
+            <div class="edit_form_add invisibility">
+              <%=  link_to t('common.cancel'), '', class: "edit_button_second form form-control text-center btn btn-warning" %>
+            </div>
+          </td>
+
+          <td class="col-md-1 text-center">
+            <div>
+              <%=  link_to t('common.edit'), edit_admin_train_path(train),
+                class: "form form-control text-center btn btn-warning" %>
+            </div>
+          </td>
+
+          <td class="col-md-1 text-center">
+            <div>
+              <%=  link_to t('common.delete'), [:admin, train], method: :delete,
+                data: { confirm: 'Вы действительно хотите удалить?' },
+                class: "form form-control text-center btn btn-danger"  %>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+<% end %>

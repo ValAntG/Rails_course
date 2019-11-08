@@ -46,6 +46,7 @@ gem 'figaro'
 gem 'barby', '~> 0.6.2'
 gem 'chunky_png', '~> 1.3.0'
 gem 'rqrcode', '~> 0.4.2'
+gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
